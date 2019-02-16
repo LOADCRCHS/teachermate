@@ -8,9 +8,16 @@
   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
 
-    <context:component-scan base-package="com.lihaozuo.pet.controller">
+    <context:component-scan base-package="com.teachermate.controller">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
+
+    <!-- 将静态资源的处理经由Spring MVC框架交回Web应用服务器处理 -->
+    <!-- 解决html等静态资源文件被spingmvc拦截的问题-->
+    <!--<mvc:default-servlet-handler />-->
+
+    <mvc:resources location="/WEB-INF/pages/" mapping="/sxu/**"/>
+    <mvc:resources location="/asserts/" mapping="/asserts/**"/>
 
     <!--mvc:annotation-driven只能出现一次-->
     <!-- 是spring MVC为@Controllers分发请求所必须的 -->
@@ -45,11 +52,13 @@
     </bean>
 
     <!-- 解析器InternalResourceViewResolver来说，不管能不能解析它都不会返回null -->
+    <!-- InternalResourceViewResolver 是jsp用的解析器，html时要用FreeMaker视图解析 -->
     <!-- 拦截了所有的逻辑视图，让后续的解析器得不到执行 -->
     <!-- 所以优先级必须设置为最低 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/pages/"/><!--前缀-->
-        <property name="suffix" value=".jsp"/><!--后缀-->
+        <property name="prefix" value="/sxu/"/>
+        <property name="suffix" value=".html"/>
+
         <!-- 优先级 数目越小优先级越大 -->
         <property name="order" value="1"/>
     </bean>
