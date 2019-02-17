@@ -16,7 +16,7 @@
     <!-- 解决html等静态资源文件被spingmvc拦截的问题-->
     <!--<mvc:default-servlet-handler />-->
 
-    <mvc:resources location="/WEB-INF/pages/" mapping="/sxu/**"/>
+    <mvc:resources location="/WEB-INF/pages/" mapping="/WEB-INF/pages/**"/>
     <mvc:resources location="/asserts/" mapping="/asserts/**"/>
 
     <!--mvc:annotation-driven只能出现一次-->
@@ -56,7 +56,7 @@
     <!-- 拦截了所有的逻辑视图，让后续的解析器得不到执行 -->
     <!-- 所以优先级必须设置为最低 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/sxu/"/>
+        <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".html"/>
 
         <!-- 优先级 数目越小优先级越大 -->
