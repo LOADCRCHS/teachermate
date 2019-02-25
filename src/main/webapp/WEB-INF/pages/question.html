@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="keywords" content="微助教 微信教学系统 微信课堂教学 在线答题 课堂签到"/>
+    <meta name="description" content="微助教课堂教学系统，为老师提供在线出题、看题和查看答题数据、课堂签到的服务，为学生提供在微信公众号加入课堂、答题和签到的服务"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="baidu-site-verification" content="8xOlEx8ZvC"/>
+    <title>微助教V2.1 - 答题数据</title>
+    <link rel="shortcut icon" type="image/x-icon"
+          href="https://www.teachermate.com.cn:443/legacy/assets/images/favicon/favicon.ico"/>
+    <link rel="shortcut icon" type="image/png"
+          href="https://www.teachermate.com.cn:443/legacy/assets/images/favicon/favicon.png"/>
+
+
+    <link rel="stylesheet" href="../../static/css/materialize-054029428a.css">
+    <link rel="stylesheet" href="../../static/css/reveal.css">
+    <link rel="stylesheet" href="../../static/css/black.css" id="theme">
+    <link rel="stylesheet" href="../../static/css/viewer.min.css">
+    <link rel="stylesheet" href="../../static/css/font-awesome.min.css">
+
+
+    <link rel="stylesheet" href="../../static/css/answer_data-62d4b6bf46.css">
+    <!--[if lt IE 9]>
+    <script src="../../static/js/html5.js"></script>
+    <script src="../../static/js/respond.js"></script>
+    <script src="../../static/js/json2.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        var _czc = _czc || [];
+        _czc.push(["_setCustomVar", 'userType', 'teacher', 2]);
+    </script>
+    <script type="text/javascript" id="fr-fek">
+        try {
+            var initFek = function (k) {
+                localStorage.FEK = k;
+                t = document.getElementById('fr-fek');
+                t.parentNode.removeChild(t);
+            };
+            initFek('FC3E1F2H1uB5A2A1C3A5F1A3E1A3A16hasvF-10qC-7iqC-22jzF4bmnH3fh==');
+        }
+        catch (e) {
+        }
+    </script>
+</head>
+
+<body>
+
+<div id="container">
+
+    <input type="hidden" id="authorization"
+           value="JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTExMzMzNCwic3R1ZGVudElkIjoyMTkyNjYxLCJhY2NvdW50SWQiOjIxOTkwOTYsIm5hbWUiOiLmnY7lpKfkuZ8iLCJhdmF0YXIiOiJodHRwczovL2FwcC50ZWFjaGVybWF0ZS5jb20uY24vN2NlNTk2OWIvMTU0NjMxOTA5OV9vcTlQWXdqQ0VDUW5xenFvUENkYnpFNDJSMHhvIiwibWFpbCI6IiIsImlhdCI6MTU1MTEwMTc0N30.HNw-xf8LFXXNpQi1xxfVtUL0fWHYYSXnEQvHQdlOyhA"/>
+    <input type="hidden" id="course-id" value="1080176">
+    <input type="hidden" id="library-id" value="91327">
+    <input type="hidden" id="tpl-msg-push" value="1">
+    <div class="content-wrap">
+        <div class="content black_background">
+            <section class="left-wrapper">
+                <div class="left-area">
+
+                    <div id="edit-area"></div>
+                    <div id="question-nav"></div>
+            </section>
+
+            <div class="dialog-wrapper delete-paper-dialog">
+                <div class="dialog-outer">
+                    <div class="dialog">
+
+                        <div class="dialog-head">
+                            <span>确认删除</span>
+                            <a href="javascript:void(0);" title="关闭" class="close-btn"></a>
+                        </div>
+
+                        <div class="dialog-content">
+                            <div class="delete-item">您确定删除题目？</div>
+                        </div>
+
+                        <div class="dialog-foot">
+                            <a href="javascript:void(0);" class="dialog-confirm dialog-btn">确定</a>
+                            <a href="javascript:void(0);" class="dialog-cancel dialog-btn">取消</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript" src="../../static/js/question-nav.1519812290119.js"></script>
+            <script>
+                var questions = {
+                    "single": [{
+                        "question_id": "4448771",
+                        "chapter_id": "0",
+                        "content": "____ _____ ___",
+                        "type": 1,
+                        "describe": "",
+                        "difficult_level": "1",
+                        "question_open": "2",
+                        "answer_open": "0",
+                        "paper_id": "0",
+                        "serial_number": "T0003",
+                        "review": "",
+                        "review_open": "0",
+                        "create_time": "2019-02-17",
+                        "answer_count": 0,
+                        "right_count": 0,
+                        "is_answered": 0,
+                        "answer_ratio": 0,
+                        "count_ratio": 0
+                    }, {
+                        "question_id": "4448770",
+                        "chapter_id": "0",
+                        "content": "y\/n",
+                        "type": 9,
+                        "describe": "",
+                        "difficult_level": "3",
+                        "question_open": "0",
+                        "answer_open": "0",
+                        "paper_id": "0",
+                        "serial_number": "T0002",
+                        "review": "",
+                        "review_open": "0",
+                        "create_time": "2019-02-17",
+                        "answer_count": 0,
+                        "right_count": 0,
+                        "is_answered": 0,
+                        "answer_ratio": 0,
+                        "count_ratio": 0
+                    }, {
+                        "question_id": "4448769",
+                        "chapter_id": "0",
+                        "content": "\u4f60\u662f ____",
+                        "type": 2,
+                        "describe": "",
+                        "difficult_level": "3",
+                        "question_open": "0",
+                        "answer_open": "0",
+                        "paper_id": "0",
+                        "serial_number": "T0001",
+                        "review": "",
+                        "review_open": "0",
+                        "create_time": "2019-02-17",
+                        "answer_count": 0,
+                        "right_count": 0,
+                        "is_answered": 0,
+                        "answer_ratio": 0,
+                        "count_ratio": 0
+                    }],
+                    "paper": [{
+                        "question_id": "4448827",
+                        "chapter_id": "0",
+                        "content": "\u672a\u547d\u540d\u7ec4\u5377 - 0217",
+                        "type": 8,
+                        "describe": "\u6d4b\u8bd5\u7b80\u4ecb",
+                        "difficult_level": "3",
+                        "question_open": "2",
+                        "answer_open": "0",
+                        "paper_id": "0",
+                        "serial_number": "J0001",
+                        "review": null,
+                        "review_open": "0",
+                        "create_time": "2019-02-17",
+                        "answer_count": 0,
+                        "right_count": 0,
+                        "is_answered": 0,
+                        "answer_ratio": 0,
+                        "count_ratio": 0
+                    }],
+                    "course_info": {
+                        "course_id": "1080176",
+                        "name": "\u5927\u4e5f\u8bfe\u5802",
+                        "library_id": "91327",
+                        "duration_rule": "5",
+                        "answer_open_rule": "1"
+                    }
+                };
+                var data = {
+                    "chapters": [],
+                    "courseInfo": questions.course_info,
+                    "questions": questions.single || [],
+                    "papers": questions.paper || [],
+                    "paper_info": questions.paper_info,
+                    "courseware": questions.courseware || []
+                };
+                window.NAV_DATA = data;
+            </script>
+            <div class="right-area">
+                <div class="right-area-scroll ">
+                    <input type="hidden" id="question-type" value="1">
+                    <input type="hidden" id="question-duration" value="1">
+                    <input type="hidden" id="question-id" value="4448771">
+                    <input type="hidden" id="leave-time" value="-714784">
+                    <input type="hidden" id="question-open" value="2">
+                    <input type="hidden" id="question-exp-open" value="0">
+                    <div class="question-wrap card">
+                        <div class="question-content">
+                            <span class="open-state teal btn-arc hidden">开启中</span>
+                            <div class="question-cont">
+                                <div class="font-size-turner" ctrl="question-content">
+                                    <button class="normal">A</button>
+                                    <button class="larger">A</button>
+                                </div>
+                                <span class="question-type tip-badge
+                    green-badge white-text
+                ">T0003 单选题</span>
+                                <span class="ml-10"></span>
+                                <div>
+            <span class="ml-10">
+                <p>____ _____ ___</p>
+            </span>
+                                </div>
+                            </div>
+                            <div class="answer-cont">
+                            </div>
+                            <div class="answer-cont">
+                                <div class="answer-choice">A. 1</div>
+                                <div class="answer-choice">B. 2</div>
+                                <div class="answer-choice">C. 3</div>
+                                <div class="answer-choice">D. 4</div>
+                            </div>
+                        </div>
+                        <div class="buttons btns-close ">
+                            <a class="edit teal-text btn-edit btn-edit-question">编辑</a>
+                            <a class="edit teal-text btn-edit btn-copy-question">克隆</a>
+                            <a class="edit teal-text btn-edit btn-del-question">删除</a>
+                            <a class="edit teal-text btn-edit btn-answer-review">展开答案和解析</a>
+                            <div class="pull-right">
+                                <div class="inline-block grey-text time-opening">
+                                    <svg class="inline-middle" fill="#c8c8c8" height="24" viewBox="0 0 24 24" width="24"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                                        <path d="M0 0h24v24H0z" fill="none"/>
+                                        <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                                    </svg>
+                                    <span class="inline-block timing-open-info">指定开启时间</span>
+                                    <div class="row date-card">
+                                        <div class="col s12 m12">
+                                            <div class="card teal z-depth-4">
+                                                <div class="card-content white-text">
+                                                    <p>指定开启时间</p>
+                                                    <input type="text" class="datepicker white-text inline-block"/>
+                                                    <input value="20" name="hour" type="text" class="validate"/>
+                                                    <span>:</span>
+                                                    <input value="00" name="minute" type="text" class="validate"/>
+
+                                                </div>
+                                                <div class="card-action white align-right">
+                                                    <a class="teal-text btn-timing-cancle">取消</a>
+                                                    <a class="teal-text btn-timing-confirm">确定</a>
+                                                </div>
+                                                <input type="hidden" id="timing-open" value=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="inline-block teal-text time-limit mr-20">
+                                    <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked"/>
+                                    <label for="filled-in-box" class="btn-time-limit"></label>
+                                    <span class="inline-block time-limit-info">限时<span
+                                            class="underline">5</span>分钟</span>
+                                    <div class="row time-card">
+                                        <div class="col s12 m12">
+                                            <div class="card teal z-depth-4">
+                                                <div class="card-content white-text">
+                                                    <p>设定限时</p>
+                                                    <input type="text"
+                                                           class="input-time validate white-text align-right" value="5">
+                                                    <label class="white-text ml-10 font-20">分钟</label>
+                                                </div>
+                                                <div class="card-action white align-right">
+                                                    <a class="teal-text btn-limit-cancle">取消</a>
+                                                    <a class="teal-text btn-limit-default">保存为默认值</a>
+                                                    <a class="teal-text btn-limit-confirm">确定</a>
+                                                </div>
+                                                <input type="hidden" id="time-limit" value=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="openQuestionBtn waves-effect waves-light btn teal extend-btn">
+                                    <a class="btn-open inner-btn" href="javascript:void(0);">重新开启题目</a>
+                                </div>
+                                <a class="startTimerBtn btn-open waves-effect waves-light btn teal">启动定时</a>
+                            </div>
+                        </div>
+                        <div class="buttons btns-opening teal lighten-5 align-right hidden">
+                            <div class="inline-block time-leave grey-text text-darken-3 ">
+                                <svg class="inline-middle" fill="#4a4a4a" height="24" viewBox="0 0 24 24" width="24"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M22 5.72l-4.6-3.86-1.29 1.53 4.6 3.86L22 5.72zM7.88 3.39L6.6 1.86 2 5.71l1.29 1.53 4.59-3.85zM12.5 8H11v6l4.75 2.85.75-1.23-4-2.37V8zM12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/>
+                                </svg>
+                                <span class="inline-block">本题将于 <span class="detail-time"></span> 后自动关闭</span>
+                                <button class="btn teal lighten-3 btn-unfold">
+                                    <i class="icon icon-triangle-down"></i>
+                                    <i class="icon icon-triangle-up"></i>
+                                    <span class="tip z-depth-3">点击展开倒计时工具</span>
+                                </button>
+                            </div>
+                            <div class="inline-block teal-text stop-time ml-10 ">取消限时</div>
+                            <div class="btn-close waves-effect waves-light inline-block btn white teal-text ml-20">
+                                立刻关闭
+                            </div>
+                        </div>
+                        <div class="buttons btns-timing amber lighten-5 hidden">
+                            <div class="inline-middle grey-text text-darken-3">
+                                <svg class="inline-middle" fill="#4a4a4a" height="24" viewBox="0 0 24 24" width="24"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                                    <path d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                                </svg>
+                                <span class="inline-block">本题将于 <span class="start-time"></span> 开启，离开启还有 <span
+                                        class="detail-time">-1</span>。</span>
+                            </div>
+                            <div class="pull-right">
+                                <div class="close-timing waves-effect waves-light btn white teal-text">取消定时</div>
+                                <div class="waves-effect waves-light btn teal ml-20 extend-btn">
+                                    <a class="btn-timing-open inner-btn" href="javascript:void(0);">立刻开启</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="answer-content">
+                        <div class="inner-wrapper">
+                            <div class="font-size-turner" ctrl="answer-content">
+                                <button class="normal">A</button>
+                                <button class="larger">A</button>
+                            </div>
+                            <div class="acs-title">答案：</div>
+                            <p>A</p>
+                            <div class="acs-title">解析：</div>
+                            <p>未设置解析</p>
+                        </div>
+                    </div>
+                    <div class="card white answer-info mt-20">
+                        <div class="right-list">
+                            <h3 class="right-list-title">答题概况</h3>
+                            <a class="export" href="api/export/answer?course_id=1080176&question_id=4448771">导出文字答案(Excel)</a>
+                            <div class="inline-block switch pull-right">
+                                <label>
+                                    <input type="checkbox" class="switch-answer" name="review"/>
+                                    <span class="lever"></span>
+                                    公布解析
+                                </label>
+                            </div>
+                            <div class="inline-block switch pull-right">
+                                <label class="grey-text switch-answer-wrapper font-14">
+                                    <input type="checkbox" class="switch-answer"/>
+                                    <span class="lever"></span>公布答案
+                                </label>
+                            </div>
+
+                            <div class="inline-block switch pull-right">
+                                <label>
+                                    <input type="checkbox" class="switch-group" name="group"/>
+                                    <span class="lever"></span>
+                                    按分组显示
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="green-line"></div>
+                            <div class="group-chart-container">
+                            </div>
+                            <div class="right-list-content">
+                                <h3 class="right-list-title">
+                                    正确人员名单
+                                    （<span class="right-count">0</span>/<span class="answer-count">0</span>）
+                                </h3>
+                                <div class="green-line"></div>
+                                <ul class="top-list">
+                                </ul>
+                                <div class="rest-list">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="answer-distribute">
+                            <h3 class="answer-distribute-title">答案分布 <a href="javascript:void(0);"
+                                                                        class="fold J-show inline-middle">收起</a>
+                                <div class="choice-type inline-middle ml-20">
+                                    <input type="radio" class="with-gap" name="choice-type" value="0" checked
+                                           id="choice-percent"/>
+                                    <label for="choice-percent" class="accent-4 teal-text">百分比(%)</label>
+                                    <input type="radio" class="with-gap" name="choice-type" value="1" id="choice-num"/>
+                                    <label class="ml-10 accent-4 teal-text" for="choice-num">数值(人)</label>
+                                </div>
+                            </h3>
+                            <div class="green-line"></div>
+                            <div class="chart-wrap">
+                                <ul id="chart">
+                                    <li><span class="axis">100%</span><span class="horizon-line"></span></li>
+                                    <li><span class="axis">80%</span><span class="horizon-line"></span></li>
+                                    <li><span class="axis">60%</span><span class="horizon-line"></span></li>
+                                    <li><span class="axis">40%</span><span class="horizon-line"></span></li>
+                                    <li><span class="axis">20%</span><span class="horizon-line"></span></li>
+                                    <li><span class="axis">0%</span><span class="horizon-line"></span></li>
+                                    <ul id="column">
+                                        <li class="choice-item"><span class="center choice-ratio"
+                                                                      data-value="0">0%</span>
+                                            <span class="center choice-count hidden" data-value="1">0人</span>
+                                            <div class="fill"></div>
+                                            <span>A</span></li>
+                                        <li class="choice-item"><span class="center choice-ratio"
+                                                                      data-value="0">0%</span>
+                                            <span class="center choice-count hidden" data-value="1">0人</span>
+                                            <div class="fill"></div>
+                                            <span>B</span></li>
+                                        <li class="choice-item"><span class="center choice-ratio"
+                                                                      data-value="0">0%</span>
+                                            <span class="center choice-count hidden" data-value="1">0人</span>
+                                            <div class="fill"></div>
+                                            <span>C</span></li>
+                                        <li class="choice-item"><span class="center choice-ratio"
+                                                                      data-value="0">0%</span>
+                                            <span class="center choice-count hidden" data-value="1">0人</span>
+                                            <div class="fill"></div>
+                                            <span>D</span></li>
+                                    </ul>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="error-list-wrap">
+                            <div class="error-list hidden">
+                                <h3 class="right-list-title">
+                                    学生答案
+                                    <div class="student-name-btn">
+                                        <input type="checkbox" class="filled-in" id="student-name"/>
+                                        <label for="student-name">显示学生名字</label>
+                                    </div>
+                                </h3>
+                                <div class="green-line"></div>
+                                <ul class="students-answer-list">
+                                    <div class="font-size-turner" ctrl="students-answer-list">
+                                        <button class="normal">A</button>
+                                        <button class="larger">A</button>
+                                    </div>
+                                </ul>
+                            </div>
+                            <button class="btn error-btn-show">查看学生答案</button>
+                        </div>
+                        <div class="error-info-wrap">
+                            <div class="error-student-list hidden">
+                                <h3 class="right-list-title">
+                                    未答题人员名单(0)
+                                    <span class="color-black"><i class="icon-black"></i>未答</span>
+                                    <span class="color-orange"><i class="icon-orange"></i>答错</span>
+                                    <span class="color-green"><i class="icon-green"></i>答对</span>
+                                </h3>
+                                <div class="green-line"></div>
+                                <ul>
+                                </ul>
+                            </div>
+
+                            <button class="btn error-student-show ">
+                                查看未答题人员名单
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="clock-container hidden">
+                        <div class="wave4 wave"></div>
+                        <div class="wave3 wave"></div>
+                        <div class="wave2 wave"></div>
+                        <div class="wave1 wave"></div>
+                        <div class="bubble"></div>
+                        <div id="counter">
+                            <div id="counter_item1" class="counter_item">
+                                <div class="digit digit0">0</div>
+                            </div>
+                            <div id="counter_item2" class="counter_item">
+                                <div class="digit digit0">0</div>
+                            </div>
+                            <div id="counter_item3" class="counter_item">
+                                <div class="digit digit_colon">:</div>
+                            </div>
+                            <div id="counter_item4" class="counter_item">
+                                <div class="digit digit0">0</div>
+                            </div>
+                            <div id="counter_item5" class="counter_item">
+                                <div class="digit digit0">0</div>
+                            </div>
+                        </div>
+                        <button class="btn teal lighten-3 btn-fold">
+                            <i class="icon icon-triangle-up"></i>
+                            <span class="tip z-depth-3">点击收起倒计时工具</span>
+                        </button>
+                    </div>
+                </div>
+                <div id="finish-tip"></div>
+            </div>
+        </div>
+    </div>
+    <div class="playbtn-group hidden">
+        <div class="top">
+            <i class="icon icon-play"></i>
+            <p>返回幻灯片</p>
+        </div>
+        <div class="center">
+            <i class="icon icon-replay"></i>
+            <i class="icon icon-cancle"></i>
+        </div>
+        <div class="bottom">
+            <i class="icon icon-stop"></i>
+            <p>关闭幻灯片</p>
+        </div>
+    </div>
+</div>
+<div class="reveal"></div>
+<div class="dialog-mock"></div>
+<div class="dialog" id="change_password">
+    <div class="header">
+        <span class="dialog-title">修改密码</span>
+        <a href="javascript:void(0)" class="dialog-close">
+            <i class="icon dialog-icon-close"></i>
+        </a>
+    </div>
+    <div class="dialog-left">
+        <div class="line-short"></div>
+        <form>
+            <div class="mt-14">
+                <label>原始密码</label>
+                <div>
+                    <input type="password" name="origin-password" class="text-input"/>
+                </div>
+            </div>
+            <div class="mt-14">
+                <label>修改密码</label>
+                <div>
+                    <input type="password" name="new-password" class="text-input"/>
+                    <i class="hint icon"></i>
+                </div>
+            </div>
+            <div class="mt-14">
+                <label>确认修改密码</label>
+                <div>
+                    <input type="password" name="confirm-new-password" class="text-input"/>
+                    <i class="hint icon"></i>
+                </div>
+            </div>
+            <div class="tip-area">
+                <span class="tip"></span>
+            </div>
+            <div class="submit">
+                <input type="button" value="下一步" class="submit-btn"/>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="../../static/js/client.js"></script>
+<script type="text/javascript" src="../../static/js/jquery-1.12.1.min.js"></script>
+
+<script src="../../static/js/g2.min.js"></script>
+<script src="../../static/js/data-set.min.js"></script>
+<script type="text/javascript" src="../../static/js/materialize.js"></script>
+<script type="text/javascript" src="../../static/js/viewer.js"></script>
+<script src="../../static/js/jquery.timeout.interval.idle.js"></script>
+<script src="../../static/js/jquery.countdown.counter.js"></script>
+<script src="../../static/js/reveal.js"></script>
+<script src="../../static/js/header-4c2016905f.js"></script>
+
+<script type="text/javascript" src="../../static/js/left_area-3ec06c7983.js"></script>
+<script type="text/javascript" src="../../static/js/dialog-1656f02d11.js"></script>
+<script type="text/javascript" src="../../static/js/imageplayer-1961e98741.js"></script>
+
+
+<script type="text/javascript" src="../../static/js/editque-main-1531815498163.js"></script>
+<script type="text/javascript" src="../../static/js/howler.min.js"></script>
+
+
+<script type="text/javascript" src="../../static/js/answer_data-6c34730b10.js"></script>
+
+
