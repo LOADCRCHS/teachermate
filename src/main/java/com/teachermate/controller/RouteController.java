@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class IndexController {
+public class RouteController {
     @RequestMapping("/")
     public String index(){
         return "index";
@@ -13,5 +13,15 @@ public class IndexController {
     @RequestMapping("pet")
     public String pet(){
         return "pet";
+    }
+
+    @RequestMapping("question")
+    public String question(){
+        return "question";
+    }
+
+    @RequestMapping("sign")
+    public String sign(){
+        return "sign";
     }
 }

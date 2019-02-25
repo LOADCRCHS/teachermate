@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>Title</title>
-    <script type="text/javascript" src="/asserts/js/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" href="/asserts/layui/css/layui.css">
+    <script type="text/javascript" src="../../asserts/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="../../asserts/layui/css/layui.css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body class="layui-layout-body">
@@ -55,6 +55,9 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
+                    <a href="javascript:;" onclick="$('#main-content').load('sign')">签到</a>
+                </li>
+                <li class="layui-nav-item">
                     <a href="javascript:;">课堂测试</a>
                 </li>
                 <li class="layui-nav-item">
@@ -64,7 +67,10 @@
                     <a href="javascript:;">预警系统</a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">教师规格设置</a>
+                    <a href="javascript:;">教室规格设置</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;" onclick="$('#main-content').load('question')">答题</a>
                 </li>
             </ul>
         </div>
@@ -80,7 +86,7 @@
         © layui.com - 底部固定区域
     </div>
 </div>
-<script type="text/javascript" src="/asserts/layui/layui.js"></script>
+<script type="text/javascript" src="../../asserts/layui/layui.js"></script>
 <script>
     //JavaScript代码区域
     layui.use('element', function(){
