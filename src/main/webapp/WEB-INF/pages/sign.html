@@ -1,4 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh" >
+<head>
+
+    <meta charset="utf-8">
+    <meta name="keywords" content="微助教 微信教学系统 微信课堂教学 在线答题 课堂签到"/>
+    <meta name="description" content="微助教课堂教学系统，为老师提供在线出题、看题和查看答题数据、课堂签到的服务，为学生提供在微信公众号加入课堂、答题和签到的服务"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="baidu-site-verification" content="8xOlEx8ZvC" />
+    <title>微助教V2.1 - 《大也课堂》</title>
+    <link rel="shortcut icon" type="image/x-icon" href="https://www.teachermate.com.cn:443/legacy/assets/images/favicon/favicon.ico"/>
+    <link rel="shortcut icon" type="image/png" href="https://www.teachermate.com.cn:443/legacy/assets/images/favicon/favicon.png"/>
+
+    <link rel="stylesheet" href="../../static/css/materialize-054029428a.css">
 
 
-<button class="layui-btn layui-btn-lg layui-btn-normal">开启新签到</button>
+
+
+    <link rel="stylesheet" href="../../static/css/attendance-729de12b75.css">
+    <!--[if lt IE 9]>
+    <script src="../../static/js/html5.js"></script>
+    <script src="../../static/js/respond.js"></script>
+    <script src="../../static/js/json2.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        var _czc = _czc || [];
+        _czc.push(["_setCustomVar", 'userType', 'teacher', 2]);
+    </script>
+    <script type="text/javascript" id="fr-fek">
+        try {
+            var initFek = function (k) {
+                localStorage.FEK=k;
+                t=document.getElementById('fr-fek');
+                t.parentNode.removeChild(t);
+            };
+            initFek('FC3E1F2H1uB5A2A1C3A5F1A3E1A3A16hasvF-10qC-7iqC-22jzF4bmnH3fh==');
+        }
+        catch(e){}
+    </script>
+</head>
+
+<body >
+
+<input type="hidden" id="course-id" value="1080176" />
+<input type="hidden" id="is_sign" value="0" />
+<input type="hidden" id="sign-id" value="" />
+<input type="hidden" id="authorization" value="JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTExMzMzNCwic3R1ZGVudElkIjoyMTkyNjYxLCJhY2NvdW50SWQiOjIxOTkwOTYsIm5hbWUiOiLmnY7lpKfkuZ8iLCJhdmF0YXIiOiJodHRwczovL2FwcC50ZWFjaGVybWF0ZS5jb20uY24vN2NlNTk2OWIvMTU0NjMxOTA5OV9vcTlQWXdqQ0VDUW5xenFvUENkYnpFNDJSMHhvIiwibWFpbCI6IiIsImlhdCI6MTU1MTE4MjgyNn0.Dvre2Q61-Os-mtM5w_KIfGlhYci9G6pTI1a0yjiTudo" />
+<input type="hidden" id="leave-time" value="" />
+<input type="hidden" id="is-gps" value=1 />
+<div class="main-wrapper">
+    <div class="right-wrap">
+        <div class="header">
+            <div class="in-header">
+					<span class="check-time hidden">
+						<span class="title">距离签到结束还有</span>
+			      <span class="left-time"></span>
+			      秒
+			    </span>
+            </div>
+        </div>
+        <div class="count flipTimer">
+            <div class="seconds">
+                <div class="digit-set digit-set1">
+                    <div class="digit active">
+                        <div class="digit-top"> <span class="digit-wrap">0</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">0</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">1</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">1</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">2</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">2</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">3</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">3</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">4</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">4</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">5</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">5</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">6</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">6</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">7</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">7</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">8</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">8</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit previous">
+                        <div class="digit-top"> <span class="digit-wrap">9</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">9</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                </div>
+                <div class="digit-set digit-set2">
+                    <div class="digit active">
+                        <div class="digit-top"> <span class="digit-wrap">0</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">0</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">1</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">1</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">2</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">2</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">3</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">3</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">4</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">4</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">5</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">5</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">6</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">6</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">7</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">7</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">8</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">8</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit previous">
+                        <div class="digit-top"> <span class="digit-wrap">9</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">9</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                </div>
+                <div class="digit-set digit-set3">
+                    <div class="digit active">
+                        <div class="digit-top"> <span class="digit-wrap">0</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">0</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">1</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">1</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">2</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">2</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">3</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">3</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">4</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">4</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">5</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">5</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">6</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">6</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">7</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">7</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">8</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">8</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit previous">
+                        <div class="digit-top"> <span class="digit-wrap">9</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">9</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                </div>
+                <div class="digit-set digit-set4">
+                    <div class="digit active">
+                        <div class="digit-top"> <span class="digit-wrap">0</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">0</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">1</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">1</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit ">
+                        <div class="digit-top"> <span class="digit-wrap">2</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">2</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit ">
+                        <div class="digit-top"> <span class="digit-wrap">3</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">3</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">4</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">4</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">5</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">5</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">6</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">6</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">7</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">7</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">8</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">8</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit previous">
+                        <div class="digit-top"> <span class="digit-wrap">9</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">9</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                </div>
+                <div class="digit-set digit-set5">
+                    <div class="digit active">
+                        <div class="digit-top"> <span class="digit-wrap">0</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">0</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">1</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">1</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit ">
+                        <div class="digit-top"> <span class="digit-wrap">2</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">2</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit ">
+                        <div class="digit-top"> <span class="digit-wrap">3</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">3</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">4</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">4</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">5</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">5</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">6</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">6</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">7</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">7</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit">
+                        <div class="digit-top"> <span class="digit-wrap">8</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">8</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                    <div class="digit previous">
+                        <div class="digit-top"> <span class="digit-wrap">9</span> </div>
+                        <div class="shadow-top"></div>
+                        <div class="digit-bottom"> <span class="digit-wrap">9</span> </div>
+                        <div class="shadow-bottom"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-wrap">
+            <a href="javascript:void(0);" class="btn-close waves-effect waves-light btn" style="display: none;">关闭签到</a>
+        </div>
+        <div class="switch group-switch" style="float: left;">
+            <label>
+                <input type="checkbox" name="group">
+                <span class="lever"></span>
+                按分组显示
+            </label>
+        </div>
+        <div id="finish-tip"></div>
+        <div class="clearfix"></div>
+        <div class="student-contaner">
+            <ul class="student-list"></ul>
+            <div class="long-line hidden"></div>
+            <ul class="rest-list"></ul>
+        </div>
+        <div class="clearfix"></div>
+        <div class="group-chart-container"></div>
+    </div>
+    <div class="history-container">
+        <div class="history-title">
+            <span class="student_count">课堂总人数 0</span>
+            <a class="export" href="api/export/sign_info?course_id=1080176">导出</a>
+        </div>
+        <section class="history-list">
+            <li>
+                <div class="open-checkout">
+                    <button class="btn-open J-open">开启新签到</button>
+                    <div class="switch">
+                        <label class="teal-text">
+                            <input type="checkbox" name="gps-type" checked>
+                            <span class="lever"></span>
+                            GPS定位
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <span class="sign-date">2019-02-26今天</span>
+                    <span class="sign-count">已完成0次签到</span>
+                </div>
+            </li>
+            <ul class="history-info">
+                <li class="present-data">
+                    <ul class="detail-data">
+                    </ul>
+                </li>
+                <li class="history-data">
+                    <div><span class="sign-date">2019-02-25</span><span class="sign-count">2次签到</span></div>
+                    <ul class="detail-data">
+                        <li class="history-item" data-id="1435181">
+                            <span><i class="sign-index">2</i>23:13
+                                                                <svg fill="#4a4a4a" height="14" viewBox="3 -5 24 26" width="14">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                    <path d="M0 0h24v24H0z" fill="none"/>
+                                </svg>
+                                                            </span>
+                            <span class="sign-ratio" id="sign-ratio-1435181">0 (0%)</span>
+                        </li>
+                        <li class="history-item" data-id="1435180">
+                            <span><i class="sign-index">1</i>23:13
+                                                            </span>
+                            <span class="sign-ratio" id="sign-ratio-1435180">0 (0%)</span>
+                        </li>
+                    </ul>
+                </li>
+                <li class="history-data">
+                    <div><span class="sign-date">2019-02-17</span><span class="sign-count">2次签到</span></div>
+                    <ul class="detail-data">
+                        <li class="history-item" data-id="1431964">
+                            <span><i class="sign-index">2</i>16:00
+                                                            </span>
+                            <span class="sign-ratio" id="sign-ratio-1431964">0 (0%)</span>
+                        </li>
+                        <li class="history-item" data-id="1431963">
+                            <span><i class="sign-index">1</i>15:50
+                                                            </span>
+                            <span class="sign-ratio" id="sign-ratio-1431963">0 (0%)</span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </div>
+</div>
+<div class="dialog-wrapper delete-history-dialog">
+    <div class="dialog-outer">
+        <div class="dialog">
+
+            <div class="dialog-head">
+                <span>删除历史数据</span>
+                <a href="javascript:void(0);" title="关闭" class="close-btn"></a>
+            </div>
+
+            <div class="dialog-content">删除后将无法恢复，您确定要删除吗？</div>
+
+            <div class="dialog-foot">
+                <a href="javascript:void(0);" class="dialog-confirm dialog-btn">确定</a>
+                <a href="javascript:void(0);" class="dialog-cancel dialog-btn">取消</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../static/js/client.js"></script>
+<script type="text/javascript" src="../../static/js/jquery-1.12.1.min.js"></script>
+
+<script src="../../static/js/g2.min.js"></script>
+<script src="../../static/js/data-set.min.js"></script>
+<script type="text/javascript" src="../../static/js/materialize.js"></script>
+<script type="text/javascript" src="../../static/js/underscore-1.5.2-min.js"></script>
+<script type="text/javascript" src="../../static/js/header-4c2016905f.js"></script>
+<script type="text/javascript" src="../../static/js/dialog-1656f02d11.js"></script>
+<script type="text/javascript" src="../../static/js/howler.min.js"></script>
+
+
+<script type="text/javascript" src="../../static/js/attendance-7e40468541.js"></script>
+
+
 
