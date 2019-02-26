@@ -13,10 +13,12 @@ import java.util.Map;
 public class ApiV1Controller {
     @ResponseBody()
     @RequestMapping("class-attendance")
-    public Map<String,Integer> class_attendance(){
-        Map<String,Integer> sign = new HashMap<>();
-        sign.put("id",1436707);
-        sign.put("ttl",299);
-        return sign;
+    public Map<String, Map> class_attendance() {
+        Map<String, Map> result = new HashMap<>();
+        Map<String, Integer> sign = new HashMap<>();
+        sign.put("id", 1436707);
+        sign.put("ttl", 299);
+        result.put("sign", sign);
+        return result;
     }
 }

@@ -1,0 +1,43 @@
+﻿#outdated {
+    display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+    text-align: center;
+		text-transform: uppercase;
+		z-index:1500;
+    background-color: #f25648;
+		color: #ffffff;
+		padding-top: 20px;
+}
+* html #outdated {
+	position: absolute;
+}
+#outdated #btnUpdateBrowser {
+    display: block;
+		position: relative;
+		padding: 10px 20px;
+		margin: 30px auto 0;
+		width: 400px; /*need for IE*/
+    color: #ffffff;
+		text-decoration: none;
+		border: 2px solid #02A999;
+		cursor: pointer;
+		font-size: 36px;
+}
+#outdated #btnUpdateBrowser:hover {
+	color: #f25648;
+	background-color:#ffffff;
+}
+#outdated #btnCloseUpdateBrowser {
+    display: block;
+		position: relative;
+		width: 100%;
+		height: 100%;
+    text-decoration: none;
+		color: #ffffff;
+		line-height: 36px;
+		font-size: 12px;
+}
