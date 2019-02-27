@@ -38,9 +38,10 @@ public class ApiV1Controller {
         result.put("course", course);
         return result;
     }
+
     @RequestMapping(value = "class-attendance/{id}/close", method = RequestMethod.PUT)
-    public Map<String,Object> class_attendance_close(){
-        Map<String,Object> result = new HashMap<>();
+    public Map<String, Object> class_attendance_close() {
+        Map<String, Object> result = new HashMap<>();
         Map<String, Object> sign = new HashMap<>();
         sign.put("signId", "1438416");
         sign.put("rank", 3);

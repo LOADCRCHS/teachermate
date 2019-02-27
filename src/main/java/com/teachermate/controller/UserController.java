@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user/")
 public class UserController {
     @RequestMapping("/delete_sign")
-    public String delete_sign(String sign_id){
+    public String delete_sign(String sign_id) {
         return "{\"data\":[],\"msg\":\"delete success\"}";
     }
 }
