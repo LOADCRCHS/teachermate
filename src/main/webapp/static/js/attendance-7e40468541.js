@@ -431,7 +431,7 @@ var DEFAULT_DIGIT = 3;
     }
 
     function x() {
-        t.getJSON("config/faye.conf.json", function (e) {
+        t.getJSON("/config/faye.conf.json", function (e) {
             Q = e, V = new Faye.Client(Q.client);
             var i = t("#course-id").val();
             V.subscribe(Q.openCheckIn + i, O), V.subscribe(Q.closeCheckIn + i, j)

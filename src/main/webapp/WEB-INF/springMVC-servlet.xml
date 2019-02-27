@@ -19,6 +19,7 @@
     <mvc:resources location="/WEB-INF/pages/" mapping="/WEB-INF/pages/**"/>
     <mvc:resources location="/asserts/" mapping="/asserts/**"/>
     <mvc:resources location="/static/" mapping="/static/**"/>
+    <mvc:resources location="/config/" mapping="/config/**"/>
 
     <!--mvc:annotation-driven只能出现一次-->
     <!-- 是spring MVC为@Controllers分发请求所必须的 -->
