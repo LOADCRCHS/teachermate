@@ -15,9 +15,9 @@ public class RouteController {
         return "pet";
     }
 
-    @RequestMapping("question")
+    @RequestMapping("question_detail")
     public String question(){
-        return "question";
+        return "question_detail";
     }
 
     @RequestMapping("sign")
