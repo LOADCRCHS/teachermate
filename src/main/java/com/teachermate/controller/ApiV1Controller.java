@@ -28,7 +28,7 @@ public class ApiV1Controller {
         Map<String, Object> sign = new HashMap<>();
         sign.put("isGps", 0);
         sign.put("isQr", false);
-        sign.put("ttl", 291);
+        sign.put("ttl", 299);
         sign.put("count", 0);
         Map<String, Object> course = new HashMap<>();
         course.put("students", new ArrayList<>());
