@@ -1,6 +1,10 @@
 package com.teachermate.controller;
 
+import com.teachermate.pojo.Sign;
+import com.teachermate.service.SignService;
 import javafx.beans.binding.ObjectExpression;
+import org.springframework.beans.factory.ObjectFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Time;
@@ -10,13 +14,14 @@ import java.util.Map;
 
 @RequestMapping("/api/v1/")
 @RestController
-public class ApiV1Controller {
+public class SignController {
+    @Autowired
+    public SignService signService;
+
     @RequestMapping(value = "class-attendance", method = RequestMethod.POST)
-    public Map<String, Map> class_attendance_post() {
-        Map<String, Map> result = new HashMap<>();
-        Map<String, Object> sign = new HashMap<>();
-        sign.put("id", 1436707);
-        sign.put("ttl", 299);
+    public Map<String, Object> create_sign(boolean is_gps) {
+        Map<String, Object> result = new HashMap<>();
+        Sign sign = signService.create(is_gps);
         result.put("sign", sign);
         return result;
     }
