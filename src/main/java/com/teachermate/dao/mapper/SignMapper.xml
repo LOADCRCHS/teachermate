@@ -5,7 +5,7 @@
 <mapper namespace="com.teachermate.dao.SignDao">
     <insert id="create" parameterType="Sign">
         insert into sign (id, date, gps, sign_student_count, ratio)
-        VALUES (#{id}, #{date}, #{gps}, #{sign_student_count}, #{ratio});
+        VALUES (#{id}, now(), #{gps}, #{sign_student_count}, #{ratio});
     </insert>
 
     <update id="close" parameterType="int">

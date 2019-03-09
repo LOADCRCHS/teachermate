@@ -3,7 +3,6 @@ package com.teachermate.controller;
 import com.teachermate.pojo.Sign;
 import com.teachermate.service.SignService;
 import javafx.beans.binding.ObjectExpression;
-import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +18,13 @@ public class SignController {
     public SignService signService;
 
     @RequestMapping(value = "class-attendance", method = RequestMethod.POST)
-    public Map<String, Object> create_sign(boolean is_gps) {
-        Map<String, Object> result = new HashMap<>();
-        Sign sign = signService.create(is_gps);
+    public Map<String, Map> open_sign(boolean is_gps) {
+        Map<String, Map> result = new HashMap<>();
+        Map<String, Object> sign = new HashMap<>();
+        Sign sign_new = new Sign();
+        signService.create(is_gps);
+        sign.put("id", 1436707);
+        sign.put("ttl", 299);
         result.put("sign", sign);
         return result;
     }

@@ -2,12 +2,15 @@ package com.teachermate.service;
 
 import com.teachermate.pojo.Sign;
 
+import java.util.Map;
 import java.util.List;
 
 public interface SignService {
-    Sign create(boolean is_gps);
+    Map<String, Object> open_sign(boolean is_gps);
 
-    void update(Sign sign);
+    void delete(Integer id);
+
+    void close(Integer id);
 
     Sign select_one(Integer id);
 

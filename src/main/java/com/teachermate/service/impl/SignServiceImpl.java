@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SignServiceImpl implements SignService {
@@ -15,17 +17,26 @@ public class SignServiceImpl implements SignService {
     public SignDao signDao;
 
     @Override
-    public Sign create(boolean is_gps) {
+    public Map<String, Object> open_sign(boolean is_gps) {
+        Map<String, Object> result = new HashMap<>();
         Sign sign = new Sign();
         sign.setDate(new Date());
         sign.setGps(is_gps);
         signDao.create(sign);
-        return sign;
+
+        result.put("sign", sign);
+        result.put("ttl", 299);
+        return result;
     }
 
     @Override
-    public void update(Sign sign) {
-        signDao.update(sign);
+    public void delete(Integer id) {
+        signDao.delete(id);
+    }
+
+    @Override
+    public void close(Integer id) {
+        signDao.close(id);
     }
 
     @Override
