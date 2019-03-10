@@ -5,7 +5,7 @@ import com.teachermate.pojo.Sign;
 import java.util.List;
 
 public interface SignDao {
-    void create(Sign sign);
+    Integer create(Sign sign);
 
     void delete(Integer id);
 

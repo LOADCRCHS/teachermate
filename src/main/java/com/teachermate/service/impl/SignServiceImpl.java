@@ -20,12 +20,9 @@ public class SignServiceImpl implements SignService {
     public Map<String, Object> open_sign(boolean is_gps) {
         Map<String, Object> result = new HashMap<>();
         Sign sign = new Sign();
-        sign.setDate(new Date());
         sign.setGps(is_gps);
-        signDao.create(sign);
-
+        sign.setId(signDao.create(sign));
         result.put("sign", sign);
-        result.put("ttl", 299);
         return result;
     }
 

@@ -18,26 +18,23 @@ public class SignController {
     public SignService signService;
 
     @RequestMapping(value = "class-attendance", method = RequestMethod.POST)
-    public Map<String, Map> open_sign(boolean is_gps) {
-        Map<String, Map> result = new HashMap<>();
-        Map<String, Object> sign = new HashMap<>();
-        Sign sign_new = new Sign();
-        signService.create(is_gps);
-        sign.put("id", 1436707);
-        sign.put("ttl", 299);
-        result.put("sign", sign);
-        return result;
+    public Map<String, Object> open_sign(boolean is_gps) {
+        return signService.open_sign(is_gps);
     }
 
 
     @RequestMapping(value = "class-attendance/{id}", method = RequestMethod.GET)
-    public Map<String, Object> class_attendance_get(@PathVariable Integer id, @RequestParam("courseid") Integer courseId) {
+    public Map<String, Object> get_sign(@PathVariable Integer id, Integer courseId) {
         Map<String, Object> result = new HashMap<>();
+        Sign sign1 = signService.select_one(id);
+
+
         Map<String, Object> sign = new HashMap<>();
         sign.put("isGps", 0);
         sign.put("isQr", false);
         sign.put("ttl", 299);
         sign.put("count", 0);
+
         Map<String, Object> course = new HashMap<>();
         course.put("students", new ArrayList<>());
         course.put("teams", new ArrayList<>());

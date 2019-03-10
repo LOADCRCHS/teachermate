@@ -9,8 +9,10 @@ public class Sign {
     private Integer id;
     private Date date;
     private Integer gps;
+    private Integer ratio;
     private Integer sign_student_count;
     private Date close_time;
+    private Integer ttl = 299;
 
 
     public void setGps(Boolean is_gps) {

@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.teachermate.dao.SignDao">
-    <insert id="create" parameterType="Sign">
-        insert into sign (id, date, gps, sign_student_count, ratio)
-        VALUES (#{id}, now(), #{gps}, #{sign_student_count}, #{ratio});
+    <insert id="create" parameterType="Sign"  keyProperty="id" useGeneratedKeys="true">
+        insert into sign (gps)
+        VALUES (#{gps});
     </insert>
 
     <update id="close" parameterType="int">
