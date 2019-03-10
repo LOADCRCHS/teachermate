@@ -1,16 +1,14 @@
-package com.teachermate.dao;
+package com.teachermate.service;
 
-import com.teachermate.pojo.Course;
+
 import com.teachermate.pojo.Course;
 
 import java.util.List;
 
-public interface CourseDao {
+public interface CourseService {
     Integer create(Course course);
 
     void delete(Integer id);
-
-    void close(Integer id);
 
     Course select_one(Integer id);
 
