@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.teachermate.dao.SignDao">
     <insert id="create" parameterType="Sign"  keyProperty="id" useGeneratedKeys="true">
-        insert into sign (gps)
-        VALUES (#{gps});
+        insert into sign (isGps)
+        VALUES (#{isGps});
     </insert>
 
     <update id="close" parameterType="int">
@@ -21,7 +21,7 @@
     </update>
 
     <sql id="select_sql">
-        select id, date, gps, sign_student_count, ratio, close_time
+        select id, date, isGps, sign_student_count, ratio, close_time, isQr
         from sign
         where is_del = 0
     </sql>
@@ -40,7 +40,7 @@
         <where>
             <if test="id!=null">and id = #{id}</if>
             <if test="date!=date">and date = #{date}</if>
-            <if test="gps!=gps">and gps = #{gps}</if>
+            <if test="isGps!=isGps">and isGps = #{isGps}</if>
             <if test="id!=sign_student_count">and sign_student_count = #{sign_student_count}</if>
         </where>
     </select>

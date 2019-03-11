@@ -16,10 +16,10 @@ public class SignServiceImpl implements SignService {
     public SignDao signDao;
 
     @Override
-    public Map<String, Object> open_sign(boolean is_gps) {
+    public Map<String, Object> open_sign(Integer is_gps) {
         Map<String, Object> result = new HashMap<>();
         Sign sign = new Sign();
-        sign.setGps(is_gps);
+        sign.setIsGps(is_gps);
         sign.setId(signDao.create(sign));
         result.put("sign", sign);
         return result;

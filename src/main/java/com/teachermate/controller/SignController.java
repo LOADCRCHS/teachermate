@@ -23,7 +23,7 @@ public class SignController {
     private CourseService courseService;
 
     @RequestMapping(value = "class-attendance", method = RequestMethod.POST)
-    public Map<String, Object> open_sign(boolean is_gps) {
+    public Map<String, Object> open_sign(Integer is_gps) {
         return signService.open_sign(is_gps);
     }
 

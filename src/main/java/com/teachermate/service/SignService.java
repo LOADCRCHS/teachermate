@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.List;
 
 public interface SignService {
-    Map<String, Object> open_sign(boolean is_gps);
+    Map<String, Object> open_sign(Integer is_gps);
 
     void delete(Integer id);
 
