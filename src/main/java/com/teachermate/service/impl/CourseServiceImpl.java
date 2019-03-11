@@ -3,12 +3,14 @@ package com.teachermate.service.impl;
 import com.teachermate.dao.CourseDao;
 import com.teachermate.pojo.Course;
 import com.teachermate.service.CourseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class CourseServiceImpl implements CourseService {
+    @Autowired
     private CourseDao courseDao;
 
     @Override
@@ -23,6 +25,9 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Course select_one(Integer id) {
+        if (id == null) {
+            return null;
+        }
         return courseDao.select_one(id);
     }
 

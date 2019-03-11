@@ -29,10 +29,10 @@ public class SignController {
 
 
     @RequestMapping(value = "class-attendance/{id}", method = RequestMethod.GET)
-    public Map<String, Object> get_sign(@PathVariable Integer id, Integer courseId) {
+    public Map<String, Object> get_sign(@PathVariable Integer id, Integer courseid) {
         Map<String, Object> result = new HashMap<>();
         Sign sign = signService.select_one(id);
-        Course course = courseService.select_one(courseId);
+        Course course = courseService.select_one(courseid);
         result.put("signInLogs", new ArrayList<>());
         result.put("sign", sign);
         result.put("course", course);
