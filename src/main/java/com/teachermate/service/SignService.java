@@ -10,11 +10,13 @@ public interface SignService {
 
     void delete(Integer id);
 
-    void close(Integer id);
+    Sign close(Integer id);
 
     Sign select_one(Integer id);
 
     List<Sign> select_list();
 
     List<Sign> select(Sign sign);
+
+    Sign setSignTpl(Sign sign);
 }

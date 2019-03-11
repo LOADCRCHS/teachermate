@@ -31,8 +31,12 @@ public class SignServiceImpl implements SignService {
     }
 
     @Override
-    public void close(Integer id) {
+    public Sign close(Integer id) {
+        if (id == null) {
+            return null;
+        }
         signDao.close(id);
+        return signDao.select_one(id);
     }
 
     @Override
@@ -48,5 +52,103 @@ public class SignServiceImpl implements SignService {
     @Override
     public List<Sign> select(Sign sign) {
         return signDao.select(sign);
+    }
+
+    @Override
+    public Sign setSignTpl(Sign sign) {
+        if (sign == null) {
+            return null;
+        }
+        sign.setTpl("<div class='student-contaner'>" +
+                "<div class='delete-btn'>" +
+                "<i class='icon icon-delete'>" +
+                "删除本次签到" +
+                "</div>" +
+                "<section class='student-info'>" +
+                "<p class='sign-title'>" +
+                "本次签到开启于2019-03-11 23:03:18" +
+                "</p>" +
+                "<div class='sign-info grey-text'>" +
+                "<p>" +
+                "出勤" +
+                "</p>" +
+                "<p class='grey-text text-darken-2'>" +
+                "<span class='sign-num'>" +
+                "0" +
+                "</span>" +
+                "人" +
+                "</p>" +
+                "</div>" +
+                "<div class='sign-info grey-text'>" +
+                "<p>" +
+                "出勤率" +
+                "</p>" +
+                "<p class='grey-text text-darken-2'>" +
+                "<span class='sign-num'>" +
+                "0" +
+                "</span>" +
+                "%" +
+                "</p>" +
+                "</div>" +
+                "<div class='sign-info grey-text'>" +
+                "<p>" +
+                "签到开启时长" +
+                "</p>" +
+                "<p class='grey-text text-darken-2'>" +
+                "<span class='sign-num'>" +
+                "0" +
+                "</span>" +
+                "分" +
+                "<span class='sign-num'>" +
+                "4" +
+                "</span>" +
+                "秒" +
+                "</p>" +
+                "</div>" +
+                "</section>" +
+                "<ul class='student-list'>" +
+                "</ul>" +
+                "<div class='long-line hidden'>" +
+                "</div>" +
+                "<ul class='rest-list'>" +
+                "</ul>" +
+                "<div class='no-sign-list'>" +
+                "<h3>" +
+                "未签到人员名单：" +
+                "<span class='color-black'>" +
+                "<i class='icon-black'>" +
+                "</i>" +
+                "旷课" +
+                "</span>" +
+                "<span class='color-green'>" +
+                "<i class='icon-green'>" +
+                "</i>" +
+                "正常(签到成功)" +
+                "</span>" +
+                "<span class='color-red'>" +
+                "<i class='icon-red'>" +
+                "</i>" +
+                "迟到" +
+                "</span>" +
+                "<span class='color-orange'>" +
+                "<i class='icon-orange'>" +
+                "</i>" +
+                "请假" +
+                "</span>" +
+                "</h3>" +
+                "<ul>" +
+                "<li title='纪文广 2015045588' class='                color-black            '" +
+                "data-state='0' data-sid='2192660' title='纪文广'>" +
+                "<button class='state-btn'>" +
+                "修改" +
+                "</button>" +
+                "<span>" +
+                "纪文广" +
+                "</span>" +
+                "</li>" +
+                "</ul>" +
+                "</div>" +
+                "</div>");
+        return sign;
     }
 }

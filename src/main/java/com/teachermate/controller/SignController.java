@@ -35,21 +35,15 @@ public class SignController {
         Course course = courseService.select_one(courseid);
         result.put("signInLogs", new ArrayList<>());
         result.put("sign", sign);
+        // todo course对象里因包含当前课程的所有学生，和所有分组
         result.put("course", course);
         return result;
     }
 
     @RequestMapping(value = "class-attendance/{id}/close", method = RequestMethod.PUT)
-    public Map<String, Object> class_attendance_close() {
+    public Map<String, Object> class_attendance_close(@PathVariable Integer id) {
         Map<String, Object> result = new HashMap<>();
-        Map<String, Object> sign = new HashMap<>();
-        sign.put("signId", "1438416");
-        sign.put("rank", 3);
-        sign.put("date", "2019-02-27 22:20:24.000");
-        sign.put("isGps", 0);
-        sign.put("isQr", false);
-        sign.put("count", 0);
-        sign.put("ratio", 0);
+        Sign sign = signService.close(id);
         result.put("sign", sign);
         return result;
     }
