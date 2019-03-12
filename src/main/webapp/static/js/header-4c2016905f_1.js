@@ -1,0 +1,1 @@
+!function(o){"use strict";var c=o("header .course-name"),e=o("header .course-list");c.on("click",function(o){o.stopPropagation(),e.show(200)}),o(document).on("click",function(){e.hide(200)})}(jQuery);
