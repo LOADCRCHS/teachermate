@@ -11,15 +11,18 @@
     <link rel="shortcut icon" type="image/x-icon" href="https://www.teachermate.com.cn:443/legacy/assets/images/favicon/favicon.ico"/>
     <link rel="shortcut icon" type="image/png" href="https://www.teachermate.com.cn:443/legacy/assets/images/favicon/favicon.png"/>
 
-    <link rel="stylesheet" href="../../static/css/materialize-054029428a.css">
+
+    <link rel="stylesheet" href="../../static/css/materialize-054029428a_1.css">
+    <link rel="stylesheet" href="../../static/css/font-awesome.min_1.css">
 
 
 
 
-    <link rel="stylesheet" href="../../static/css/attendance-729de12b75.css">
+
+    <link rel="stylesheet" href="../../static/css/attendance-1474427b4e_1.css">
     <!--[if lt IE 9]>
-    <script src="../../static/js/html5.js"></script>
-    <script src="../../static/js/respond.js"></script>
+    <script src="../../static/js/html5_1.js"></script>
+    <script src="../../static/js/respond_1.js"></script>
     <script src="../../static/js/json2.js"></script>
     <![endif]-->
     <script type="text/javascript">
@@ -43,10 +46,11 @@
 
 <input type="hidden" id="course-id" value="1080176" />
 <input type="hidden" id="is_sign" value="0" />
+<input type="hidden" id="is_qr_sign" value="0" />
 <input type="hidden" id="sign-id" value="" />
-<input type="hidden" id="authorization" value="JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTExMzMzNCwic3R1ZGVudElkIjoyMTkyNjYxLCJhY2NvdW50SWQiOjIxOTkwOTYsIm5hbWUiOiLmnY7lpKfkuZ8iLCJhdmF0YXIiOiJodHRwczovL2FwcC50ZWFjaGVybWF0ZS5jb20uY24vN2NlNTk2OWIvMTU0NjMxOTA5OV9vcTlQWXdqQ0VDUW5xenFvUENkYnpFNDJSMHhvIiwibWFpbCI6IiIsImlhdCI6MTU1MTE4MjgyNn0.Dvre2Q61-Os-mtM5w_KIfGlhYci9G6pTI1a0yjiTudo" />
+<input type="hidden" id="authorization" value="JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTExMzMzNCwic3R1ZGVudElkIjoyMTkyNjYxLCJhY2NvdW50SWQiOjIxOTkwOTYsIm5hbWUiOiLmnY7lpKfkuZ8iLCJhdmF0YXIiOiJodHRwczovL2FwcC50ZWFjaGVybWF0ZS5jb20uY24vN2NlNTk2OWIvMTU0NjMxOTA5OV9vcTlQWXdqQ0VDUW5xenFvUENkYnpFNDJSMHhvIiwibWFpbCI6IiIsImlhdCI6MTU1MjQwNDE1MH0.XUDtio0BU2HEkclutLxVrR7q8LCZIn3-hqVH9JVZimo" />
 <input type="hidden" id="leave-time" value="" />
-<input type="hidden" id="is-gps" value=1 />
+<input type="hidden" id="is-gps" value=0 />
 <div class="main-wrapper">
     <div class="right-wrap">
         <div class="header">
@@ -371,10 +375,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="btn-wrap">
-            <a href="javascript:void(0);" class="btn-close waves-effect waves-light btn" style="display: none;">关闭签到</a>
-        </div>
+        </div>			<div class="btn-wrap">
+        <a href="javascript:void(0);" class="btn-close waves-effect waves-light btn" style="display: none;">关闭签到</a>
+    </div>
         <div class="switch group-switch" style="float: left;">
             <label>
                 <input type="checkbox" name="group">
@@ -397,26 +400,128 @@
             <span class="student_count">课堂总人数 0</span>
             <a class="export" href="api/export/sign_info?course_id=1080176">导出</a>
         </div>
-        <section class="history-list">
+        <section class="history-list ">
             <li>
-                <div class="open-checkout">
-                    <button class="btn-open J-open">开启新签到</button>
-                    <div class="switch">
-                        <label class="teal-text">
-                            <input type="checkbox" name="gps-type" checked>
-                            <span class="lever"></span>
-                            GPS定位
-                        </label>
+                <button class="qr-sign start-sign">
+                    开启二维码签到
+                </button>
+                <button class="gps-sign start-sign" gps="1">
+                    开启GPS定位签到
+                </button>
+                <button class="gps-sign start-sign" gps="0">
+                    开启普通签到
+                </button>
+                <div class="sign-state in-checkout">
+                    <div class="sign-state-info">
+                        <i id="sign-index" class="sign-index">4</i>
+                        <span id="sign-time">00:25</span>
+                        <i id="sign-icon"></i>
                     </div>
+                    <div>签到中</div>
                 </div>
-                <div>
-                    <span class="sign-date">2019-02-26今天</span>
-                    <span class="sign-count">已完成0次签到</span>
+                <div class="today-info">
+                    <span class="sign-date">2019-03-13今天</span>
+                    <span class="sign-count">已完成3次签到</span>
                 </div>
             </li>
             <ul class="history-info">
                 <li class="present-data">
                     <ul class="detail-data">
+                        <li class="history-item" data-id="1457690">
+                        <span>
+                            <i class="sign-index">3</i>00:21
+                            <i class="sign-icon fa "></i>
+                        </span>
+                            <span class="sign-ratio" id="sign-ratio-1457690">0 (0%)</span>
+                        </li>
+                        <li class="history-item" data-id="1457689">
+                        <span>
+                            <i class="sign-index">2</i>00:19
+                            <i class="sign-icon fa fa-qrcode"></i>
+                        </span>
+                            <span class="sign-ratio" id="sign-ratio-1457689">0 (0%)</span>
+                        </li>
+                        <li class="history-item" data-id="1457687">
+                        <span>
+                            <i class="sign-index">1</i>00:00
+                            <i class="sign-icon fa fa-map-marker"></i>
+                        </span>
+                            <span class="sign-ratio" id="sign-ratio-1457687">0 (0%)</span>
+                        </li>
+                    </ul>
+                </li>
+                <li class="history-data">
+                    <div><span class="sign-date">2019-03-12</span><span class="sign-count">1次签到</span></div>
+                    <ul class="detail-data">
+                        <li class="history-item" data-id="1457686">
+                            <span><i class="sign-index">1</i>23:32
+                            <i class="sign-icon fa "></i>
+                            </span>
+                            <span class="sign-ratio" id="sign-ratio-1457686">0 (0%)</span>
+                        </li>
+                    </ul>
+                </li>
+                <li class="history-data">
+                    <div><span class="sign-date">2019-03-09</span><span class="sign-count">2次签到</span></div>
+                    <ul class="detail-data">
+                        <li class="history-item" data-id="1452872">
+                            <span><i class="sign-index">2</i>17:22
+                            <i class="sign-icon fa "></i>
+                            </span>
+                            <span class="sign-ratio" id="sign-ratio-1452872">0 (0%)</span>
+                        </li>
+                        <li class="history-item" data-id="1452871">
+                            <span><i class="sign-index">1</i>17:16
+                            <i class="sign-icon fa fa-qrcode"></i>
+                            </span>
+                            <span class="sign-ratio" id="sign-ratio-1452871">0 (0%)</span>
+                        </li>
+                    </ul>
+                </li>
+                <li class="history-data">
+                    <div><span class="sign-date">2019-02-27</span><span class="sign-count">2次签到</span></div>
+                    <ul class="detail-data">
+                        <li class="history-item" data-id="1438401">
+                            <span><i class="sign-index">2</i>21:52
+                            <i class="sign-icon fa "></i>
+                            </span>
+                            <span class="sign-ratio" id="sign-ratio-1438401">0 (0%)</span>
+                        </li>
+                        <li class="history-item" data-id="1438399">
+                            <span><i class="sign-index">1</i>21:50
+                            <i class="sign-icon fa fa-qrcode"></i>
+                            </span>
+                            <span class="sign-ratio" id="sign-ratio-1438399">0 (0%)</span>
+                        </li>
+                    </ul>
+                </li>
+                <li class="history-data">
+                    <div><span class="sign-date">2019-02-26</span><span class="sign-count">4次签到</span></div>
+                    <ul class="detail-data">
+                        <li class="history-item" data-id="1436717">
+                            <span><i class="sign-index">4</i>22:54
+                            <i class="sign-icon fa "></i>
+                            </span>
+                            <span class="sign-ratio" id="sign-ratio-1436717">0 (0%)</span>
+                        </li>
+                        <li class="history-item" data-id="1436681">
+                            <span><i class="sign-index">3</i>21:47
+                            <i class="sign-icon fa fa-map-marker"></i>
+                            </span>
+                            <span class="sign-ratio" id="sign-ratio-1436681">0 (0%)</span>
+                        </li>
+                        <li class="history-item" data-id="1436679">
+                            <span><i class="sign-index">2</i>21:42
+                            <i class="sign-icon fa fa-map-marker"></i>
+                            </span>
+                            <span class="sign-ratio" id="sign-ratio-1436679">0 (0%)</span>
+                        </li>
+                        <li class="history-item" data-id="1436677">
+                            <span><i class="sign-index">1</i>21:40
+                            <i class="sign-icon fa fa-map-marker"></i>
+                            </span>
+                            <span class="sign-ratio" id="sign-ratio-1436677">0 (0%)</span>
+                        </li>
                     </ul>
                 </li>
                 <li class="history-data">
@@ -424,16 +529,14 @@
                     <ul class="detail-data">
                         <li class="history-item" data-id="1435181">
                             <span><i class="sign-index">2</i>23:13
-                                                                <svg fill="#4a4a4a" height="14" viewBox="3 -5 24 26" width="14">
-                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                                    <path d="M0 0h24v24H0z" fill="none"/>
-                                </svg>
-                                                            </span>
+                            <i class="sign-icon fa fa-map-marker"></i>
+                            </span>
                             <span class="sign-ratio" id="sign-ratio-1435181">0 (0%)</span>
                         </li>
                         <li class="history-item" data-id="1435180">
                             <span><i class="sign-index">1</i>23:13
-                                                            </span>
+                            <i class="sign-icon fa "></i>
+                            </span>
                             <span class="sign-ratio" id="sign-ratio-1435180">0 (0%)</span>
                         </li>
                     </ul>
@@ -443,12 +546,14 @@
                     <ul class="detail-data">
                         <li class="history-item" data-id="1431964">
                             <span><i class="sign-index">2</i>16:00
-                                                            </span>
+                            <i class="sign-icon fa "></i>
+                            </span>
                             <span class="sign-ratio" id="sign-ratio-1431964">0 (0%)</span>
                         </li>
                         <li class="history-item" data-id="1431963">
                             <span><i class="sign-index">1</i>15:50
-                                                            </span>
+                            <i class="sign-icon fa "></i>
+                            </span>
                             <span class="sign-ratio" id="sign-ratio-1431963">0 (0%)</span>
                         </li>
                     </ul>
@@ -477,18 +582,15 @@
     </div>
 </div>
 <script type="text/javascript" src="../../static/js/client.js"></script>
-<script type="text/javascript" src="../../static/js/jquery-1.12.1.min.js"></script>
+<script type="text/javascript" src="../../static/js/jquery-1.12.1.min_1.js"></script>
 
-<script src="../../static/js/g2.min.js"></script>
-<script src="../../static/js/data-set.min.js"></script>
-<script type="text/javascript" src="../../static/js/materialize.js"></script>
-<script type="text/javascript" src="../../static/js/underscore-1.5.2-min.js"></script>
-<script type="text/javascript" src="../../static/js/header-4c2016905f.js"></script>
-<script type="text/javascript" src="../../static/js/dialog-1656f02d11.js"></script>
-<script type="text/javascript" src="../../static/js/howler.min.js"></script>
-
-
-<script type="text/javascript" src="../../static/js/attendance-7e40468541.js"></script>
+<script src="../../static/js/g2.min_1.js"></script>
+<script src="../../static/js/data-set.min_1.js"></script>
+<script type="text/javascript" src="../../static/js/materialize_1.js"></script>
+<script type="text/javascript" src="../../static/js/underscore-1.5.2-min_1.js"></script>
+<script type="text/javascript" src="../../static/js/header-4c2016905f_1.js"></script>
+<script type="text/javascript" src="../../static/js/dialog-1656f02d11_1.js"></script>
+<script type="text/javascript" src="../../static/js/howler.min_1.js"></script>
 
 
-
+<script type="text/javascript" src="../../static/js/attendance-bb7f138fbb_1.js"></script>

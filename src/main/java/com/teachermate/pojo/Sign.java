@@ -23,6 +23,8 @@ public class Sign {
     private String tpl;
     private Map<String, Object> signDistribution = new HashMap<>();
     private Integer order = 1;
+    private Integer minutes;
+    private Integer seconds;
 
     public String getGps() {
         return isGps + "";
@@ -35,4 +37,5 @@ public class Sign {
     public void setIsQr(boolean isQr) {
         this.isQr = isQr;
     }
+
 }

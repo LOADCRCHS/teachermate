@@ -18,5 +18,5 @@ public interface SignService {
 
     List<Sign> select(Sign sign);
 
-    Sign setSignTpl(Sign sign);
+    Sign countMinAndSec(Sign sign);
 }
