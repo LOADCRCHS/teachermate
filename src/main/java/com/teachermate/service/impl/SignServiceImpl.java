@@ -59,6 +59,12 @@ public class SignServiceImpl implements SignService {
         if (sign == null) {
             return null;
         }
+        long duration = sign.getClose_time().getTime() - sign.getDate().getTime();
+        System.out.println("--------------- "+ duration);
+        int minutes = (int) (duration / (1000 * 60));
+        System.out.println("--------------- "+ minutes);
+        int seconds = (int) (duration / 1000);
+        System.out.println("--------------- "+ seconds);
         sign.setTpl("<div class='student-contaner'>" +
                 "<div class='delete-btn'>" +
                 "<i class='icon icon-delete'>" +
@@ -66,7 +72,7 @@ public class SignServiceImpl implements SignService {
                 "</div>" +
                 "<section class='student-info'>" +
                 "<p class='sign-title'>" +
-                "本次签到开启于2019-03-11 23:03:18" +
+                "本次签到开启于" + sign.getDate() +
                 "</p>" +
                 "<div class='sign-info grey-text'>" +
                 "<p>" +
@@ -74,7 +80,7 @@ public class SignServiceImpl implements SignService {
                 "</p>" +
                 "<p class='grey-text text-darken-2'>" +
                 "<span class='sign-num'>" +
-                "0" +
+                sign.getSign_student_count() +
                 "</span>" +
                 "人" +
                 "</p>" +
@@ -85,7 +91,7 @@ public class SignServiceImpl implements SignService {
                 "</p>" +
                 "<p class='grey-text text-darken-2'>" +
                 "<span class='sign-num'>" +
-                "0" +
+                sign.getRatio() +
                 "</span>" +
                 "%" +
                 "</p>" +
@@ -137,15 +143,7 @@ public class SignServiceImpl implements SignService {
                 "</span>" +
                 "</h3>" +
                 "<ul>" +
-                "<li title='纪文广 2015045588' class='                color-black            '" +
-                "data-state='0' data-sid='2192660' title='纪文广'>" +
-                "<button class='state-btn'>" +
-                "修改" +
-                "</button>" +
-                "<span>" +
-                "纪文广" +
-                "</span>" +
-                "</li>" +
+
                 "</ul>" +
                 "</div>" +
                 "</div>");
