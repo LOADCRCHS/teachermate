@@ -17,7 +17,7 @@ public class RouteController {
 
     @RequestMapping("question_detail")
     public String question() {
-        return "question_detail";
+        return "question";
     }
 
     @RequestMapping("sign")

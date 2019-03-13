@@ -78,8 +78,8 @@ var DEFAULT_DIGIT = 3;
                     "        </div>" +
                     "        <div class=\"sign-info grey-text\"><p>签到开启时长</p>" +
                     "            <p class=\"grey-text text-darken-2\">" +
-                    "                <span class=\"sign-num\">"+i.data.minutes+"</span>分" +
-                    "                <span class=\"sign-num\">"+i.data.seconds+"</span>秒" +
+                    "                <span class=\"sign-num\">" + i.data.minutes + "</span>分" +
+                    "                <span class=\"sign-num\">" + i.data.seconds + "</span>秒" +
                     "            </p>" +
                     "        </div>" +
                     "    </section>" +
