@@ -43,7 +43,7 @@ public class Course {
     private int assessmentCount;
     private int resourceNum;
     private List<String> assitants;
-    private List<String> teams;
-    private List<Long> students;
+    private List<Team> teams = new ArrayList<>();
+    private List<Student> students = new ArrayList<>();
     private StudentInfoConstraints studentInfoConstraints;
 }
