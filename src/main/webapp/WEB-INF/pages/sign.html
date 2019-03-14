@@ -419,6 +419,14 @@
                     </div>
                     <div>签到中</div>
                 </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.get("/api/v1/sign/history_info", function (data, status) {
+                //todo ajax设置签到历史记录
+                $(".today-info").find(".sign-data").html("2019-03-14今天");
+            });
+        });
+    </script>
                 <div class="today-info">
                     <span class="sign-date">2019-03-13今天</span>
                     <span class="sign-count">已完成3次签到</span>

@@ -48,4 +48,11 @@ public class SignController {
         return result;
     }
 
+    @RequestMapping(value = "sign/history_info", method = RequestMethod.GET)
+    public Map<String, Object> get_sign_history() {
+        Map<String, Object> result = new HashMap<>();
+        result.put("count", "3");
+        return result;
+    }
+
 }
