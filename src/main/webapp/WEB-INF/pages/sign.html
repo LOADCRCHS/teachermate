@@ -423,7 +423,11 @@
         $(document).ready(function() {
             $.get("/api/v1/sign/history_info", function (data, status) {
                 //todo ajax设置签到历史记录
-                $(".today-info").find(".sign-data").html("2019-03-14今天");
+                //alert(data.count);
+                var $today_info = $(".today-info");
+                $today_info.find(".sign-date").first().html(data.today+"今天");
+                $today_info.find(".sign-count").first().html(data.today+"今天")
+
             });
         });
     </script>

@@ -2,6 +2,7 @@ package com.teachermate.service.impl;
 
 import com.teachermate.dao.SignDao;
 import com.teachermate.pojo.Sign;
+import com.teachermate.pojo.SignDayInfo;
 import com.teachermate.service.SignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,5 +66,10 @@ public class SignServiceImpl implements SignService {
         sign.setMinutes(minutes);
         sign.setSeconds(seconds);
         return sign;
+    }
+
+    @Override
+    public SignDayInfo getHistoryInfo(Integer course_id) {
+        return null;
     }
 }

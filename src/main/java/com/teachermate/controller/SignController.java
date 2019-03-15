@@ -2,6 +2,7 @@ package com.teachermate.controller;
 
 import com.teachermate.pojo.Course;
 import com.teachermate.pojo.Sign;
+import com.teachermate.pojo.SignDayInfo;
 import com.teachermate.service.CourseService;
 import com.teachermate.service.SignService;
 import com.teachermate.service.impl.SignServiceImpl;
@@ -10,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,10 +51,15 @@ public class SignController {
         return result;
     }
 
-    @RequestMapping(value = "sign/history_info", method = RequestMethod.GET)
-    public Map<String, Object> get_sign_history() {
+    @RequestMapping(value = "sign/history_info/{id}", method = RequestMethod.GET)
+    public Map<String, Object> get_sign_history(@PathVariable Integer id) {
+        SignDayInfo sign_history_info = signService.getHistoryInfo(id);
         Map<String, Object> result = new HashMap<>();
-        result.put("count", "3");
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String today = sdf.format(date);
+        result.put("today", today);
+        result.put("count", 3);
         return result;
     }
 

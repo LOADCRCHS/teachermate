@@ -1,9 +1,10 @@
 package com.teachermate.service;
 
 import com.teachermate.pojo.Sign;
+import com.teachermate.pojo.SignDayInfo;
 
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 public interface SignService {
     Map<String, Object> open_sign(Integer is_gps);
@@ -19,4 +20,6 @@ public interface SignService {
     List<Sign> select(Sign sign);
 
     Sign countMinAndSec(Sign sign);
+
+    SignDayInfo getHistoryInfo(Integer course_id);
 }
