@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.teachermate.dao.SignDao">
-    <insert id="create" parameterType="Sign"  keyProperty="id" useGeneratedKeys="true">
-        insert into sign (isGps)
-        VALUES (#{isGps});
+    <insert id="create" parameterType="Sign" keyProperty="id" useGeneratedKeys="true">
+        insert into sign (isGps, course_id)
+        VALUES (#{isGps}, #{course_id});
     </insert>
 
     <update id="close" parameterType="int">
@@ -43,6 +43,12 @@
             <if test="isGps!=isGps">and isGps = #{isGps}</if>
             <if test="id!=sign_student_count">and sign_student_count = #{sign_student_count}</if>
         </where>
+    </select>
+
+    <select id="selectSignInfo" resultType="SignInfo" parameterType="course_id">
+        select *
+        from sign
+        where course_id = #{course_id}
     </select>
 
 </mapper>

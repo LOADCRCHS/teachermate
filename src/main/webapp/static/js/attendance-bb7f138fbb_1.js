@@ -242,7 +242,7 @@ var DEFAULT_DIGIT = 3;
         t(".group-switch").show();
         var e, n = t("#sign-id").val(), s = t("#course-id").val(), a = {0: "", 1: "overflow", "-1": "position-fail"};
         G = setInterval(function () {
-            x("GET", "/api/v1/class-attendance/" + n, {courseid: s}, function (i) {
+            x("GET", "/api/v1/class-attendance/" + n, {course_id: s}, function (i) {
                 if (!i.course) return clearInterval(G), clearInterval(q), void d(i);
                 var n = i.course.students, s = parseInt(i.sign.isGps), o = c(n), l = i.signInLogs, u = i.isJSJ;
                 if (l.length > F && A.play(), F = l.length, t("#leave-time").val(i.sign.ttl), R || (R = !0, f()), U.data("flipTimer").startTimer(parseInt(F, 10)), parseInt(F, 10) > 10 && t(".long-line").removeClass("hidden"), N) {

@@ -2,11 +2,13 @@ package com.teachermate.service.impl;
 
 import com.teachermate.dao.SignDao;
 import com.teachermate.pojo.Sign;
-import com.teachermate.pojo.SignDayInfo;
+import com.teachermate.pojo.SignInfo;
+import com.teachermate.pojo.SignInfoDetail;
 import com.teachermate.service.SignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,10 +19,11 @@ public class SignServiceImpl implements SignService {
     public SignDao signDao;
 
     @Override
-    public Map<String, Object> open_sign(Integer is_gps) {
+    public Map<String, Object> open_sign(Integer is_gps, Integer course_id) {
         Map<String, Object> result = new HashMap<>();
         Sign sign = new Sign();
         sign.setIsGps(is_gps == null ? 0 : is_gps);
+        sign.setCourseId(course_id);
         signDao.create(sign);
         result.put("sign", sign);
         return result;
@@ -69,7 +72,21 @@ public class SignServiceImpl implements SignService {
     }
 
     @Override
-    public List<SignDayInfo> getHistoryInfo(Integer course_id) {
-        return null;
+    public List<SignInfo> getHistoryInfo(Integer course_id) {
+        Sign sign = new Sign();
+        sign.setCourseId(course_id);
+        List<SignInfo> signInfos = signDao.selectSignInfo(sign);
+//        signInfos.sort(new Comparator<SignInfo>() {
+//            @Override
+//            public int compare(SignInfo o1, SignInfo o2) {
+//                return o1.getDate().compareTo(o2.getDate());
+//            }
+//        });
+//        signInfos.sort((o1, o2) -> o1.getDate().compareTo(o2.getDate()));
+        signInfos.sort(Comparator.comparing(SignInfo::getDate));
+        for (SignInfo signInfo:signInfos){
+            signInfo.getSignHistoryDetail().sort(Comparator.comparing(SignInfoDetail::getOrder));
+        }
+        return signInfos;
     }
 }
