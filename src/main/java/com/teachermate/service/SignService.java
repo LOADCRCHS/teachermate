@@ -21,5 +21,5 @@ public interface SignService {
 
     Sign countMinAndSec(Sign sign);
 
-    SignDayInfo getHistoryInfo(Integer course_id);
+    List<SignDayInfo> getHistoryInfo(Integer course_id);
 }

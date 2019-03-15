@@ -9,4 +9,6 @@ public class SignDayInfo {
     private String date;
     private String count;
     private List<SignHistoryDetail> signHistoryDetail;
+    private Integer order;
+
 }

@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RequestMapping("/api/v1/")
 @RestController
@@ -53,7 +50,7 @@ public class SignController {
 
     @RequestMapping(value = "sign/history_info/{id}", method = RequestMethod.GET)
     public Map<String, Object> get_sign_history(@PathVariable Integer id) {
-        SignDayInfo sign_history_info = signService.getHistoryInfo(id);
+        List<SignDayInfo> sign_history_info = signService.getHistoryInfo(id);
         Map<String, Object> result = new HashMap<>();
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

@@ -69,7 +69,7 @@ public class SignServiceImpl implements SignService {
     }
 
     @Override
-    public SignDayInfo getHistoryInfo(Integer course_id) {
+    public List<SignDayInfo> getHistoryInfo(Integer course_id) {
         return null;
     }
 }
