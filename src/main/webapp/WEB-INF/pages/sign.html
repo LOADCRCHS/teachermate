@@ -45,17 +45,19 @@
 <body >
 <script type="text/javascript">
     $(document).ready(function() {
-        $.get("/api/v1/sign/history_info/1", function (data, status) {
-            //todo ajax设置签到历史记录
-            var $today_info = $(".today-info");
-            var d = new Date();
-            var month = d.getMonth()+1;
-            if (month < 10){
-                month = "0" + month;
-            }
-            var now = d.getFullYear()+"-"+month+"-"+d.getDate();
-            $today_info.find(".sign-date").first().html(now+"今天");
-            $today_info.find(".sign-count").first().html("已完成0次签到");
+        var course_id = $("#course-id").val();
+        var url = "/api/v1/sign/history_info/" + course_id;
+
+        var d = new Date();
+        var month = d.getMonth()+1;
+        if (month < 10){
+            month = "0" + month;
+        }
+        var now = d.getFullYear()+"-"+month+"-"+d.getDate();
+        var $today_info = $(".today-info");
+        $today_info.find(".sign-date").first().html(now+"今天");
+        $today_info.find(".sign-count").first().html("已完成0次签到");
+        $.get(url, function (data, status) {
             var history_info = $(".history-info");
             var pre_data = $(".present-data").find("ul").first();
             $(data).each(function (i,e) {
@@ -63,20 +65,19 @@
                     $today_info.find(".sign-count").first().html("已完成"+e.sum+"次签到");
                     var size = e.details.length;
                     $(e.details).each(function (d_i,d_e) {
-                        var order = size-d_i;
+                        var order = size - d_i;
                         var history_item_begin =     '' +
                             '<li class="history-item" data-id="'+d_e.id+'">' +
                             '    <span>' +
                             '         <i class="sign-index">'+order+'</i>'+d_e.time;
                         var icon ='         <i class="sign-icon fa "></i>';
                         if (d_e.isGps) {
-                            icon = '    <i class="sign-icon fa fa-map-marker"></i>';
+                            icon = '        <i class="sign-icon fa fa-map-marker"></i>';
                         }
                         var history_item_end = '</span>' +
                             '    <span class="sign-ratio" id="sign-ratio-'+d_e.id+'">'+d_e.count+ '('+d_e.ratio+'%)</span>' +
                             '</li>';
-
-                        pre_data.prepend(history_item_begin + icon + history_item_end);
+                        pre_data.append(history_item_begin + icon + history_item_end);
                     })
                 }else {
                     var history_data_begin = ' ' +
