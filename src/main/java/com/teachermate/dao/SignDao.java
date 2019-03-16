@@ -3,6 +3,7 @@ package com.teachermate.dao;
 import com.teachermate.pojo.Sign;
 import com.teachermate.pojo.SignInfo;
 import com.teachermate.pojo.SignInfoDetail;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 import java.util.List;
@@ -22,5 +23,5 @@ public interface SignDao {
 
     List<SignInfo> selectSignInfo(Integer course_id);
 
-    List<SignInfoDetail> selectSignInfoDetail(String date);
+    List<SignInfoDetail> selectSignInfoDetail(@Param("date") String date,@Param("course_id") Integer course_id);
 }

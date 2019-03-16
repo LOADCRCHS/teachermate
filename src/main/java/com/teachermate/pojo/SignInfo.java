@@ -7,8 +7,8 @@ import java.util.List;
 @Data
 public class SignInfo {
     private String date;
-    private String count;
-    private List<SignInfoDetail> signHistoryDetail;
+    private String sum;
+    private List<SignInfoDetail> details;
     //private boolean isWx;
 
 }

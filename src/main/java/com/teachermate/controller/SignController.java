@@ -3,6 +3,7 @@ package com.teachermate.controller;
 import com.teachermate.pojo.Course;
 import com.teachermate.pojo.Sign;
 import com.teachermate.pojo.SignInfo;
+import com.teachermate.pojo.SignInfoDetail;
 import com.teachermate.service.CourseService;
 import com.teachermate.service.SignService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class SignController {
 
     @RequestMapping(value = "class-attendance", method = RequestMethod.POST)
     public Map<String, Object> open_sign(Integer is_gps, Integer course_id) {
-        return signService.open_sign(is_gps,course_id);
+        return signService.open_sign(is_gps, course_id);
     }
 
 
@@ -51,6 +52,16 @@ public class SignController {
     @RequestMapping(value = "sign/history_info/{course_id}", method = RequestMethod.GET)
     public List<SignInfo> get_sign_history(@PathVariable Integer course_id) {
         course_id = 1;
+        List<SignInfo> infos = signService.getHistoryInfo(course_id);
+        for (SignInfo info : infos) {
+            System.out.println("info.date -- " + info.getDate());
+            System.out.println("info.count -- " + info.getSum());
+            System.out.println("---------------");
+            for (SignInfoDetail detail : info.getDetails()) {
+                System.out.println(detail.toString());
+            }
+            System.out.println("---------------");
+        }
         return signService.getHistoryInfo(course_id);
     }
 

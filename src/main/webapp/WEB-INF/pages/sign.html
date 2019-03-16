@@ -43,7 +43,73 @@
 </head>
 
 <body >
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.get("/api/v1/sign/history_info/1", function (data, status) {
+            //todo ajax设置签到历史记录
+            var $today_info = $(".today-info");
+            var d = new Date();
+            var month = d.getMonth()+1;
+            if (month < 10){
+                month = "0" + month;
+            }
+            var now = d.getFullYear()+"-"+month+"-"+d.getDate();
+            $today_info.find(".sign-date").first().html(now+"今天");
+            $today_info.find(".sign-count").first().html("已完成0次签到");
+            var history_info = $(".history-info");
+            var pre_data = $(".present-data").find("ul").first();
+            $(data).each(function (i,e) {
+                if (e.date === now) {
+                    $today_info.find(".sign-count").first().html("已完成"+e.sum+"次签到");
+                    var size = e.details.length;
+                    $(e.details).each(function (d_i,d_e) {
+                        var order = size-d_i;
+                        var history_item_begin =     '' +
+                            '<li class="history-item" data-id="'+d_e.id+'">' +
+                            '    <span>' +
+                            '         <i class="sign-index">'+order+'</i>'+d_e.time;
+                        var icon ='         <i class="sign-icon fa "></i>';
+                        if (d_e.isGps) {
+                            icon = '    <i class="sign-icon fa fa-map-marker"></i>';
+                        }
+                        var history_item_end = '</span>' +
+                            '    <span class="sign-ratio" id="sign-ratio-'+d_e.id+'">'+d_e.count+ '('+d_e.ratio+'%)</span>' +
+                            '</li>';
 
+                        pre_data.prepend(history_item_begin + icon + history_item_end);
+                    })
+                }else {
+                    var history_data_begin = ' ' +
+                        '<li class="history-data">' +
+                        '   <div>' +
+                        '       <span class="sign-date">'+e.date+'</span>' +
+                        '       <span class="sign-count">'+e.sum+'次签到</span>' +
+                        '   </div>'+
+                        '   <ul class="detail-data">';
+                    var size2 = e.details.length;
+                    $(e.details).each(function (d_i,d_e) {
+                        var order = size2-d_i;
+                        var history_item_begin =     '' +
+                            '<li class="history-item" data-id="'+d_e.id+'">' +
+                            '    <span>' +
+                            '         <i class="sign-index">'+order+'</i>'+d_e.time;
+                        var icon = '    <i class="sign-icon fa "></i>';
+                        if (d_e.isGps) {
+                            icon = '    <i class="sign-icon fa fa-map-marker"></i>';
+                        }
+                        var history_item_end = '    </span>' +
+                            '    <span class="sign-ratio" id="sign-ratio-'+d_e.id+'">'+d_e.count+ '('+d_e.ratio+'%)</span>' +
+                            '</li>';
+                        history_data_begin+=history_item_begin + icon + history_item_end;
+                    });
+                    var history_data = history_data_begin + '</ul></li>';
+                    history_info.append(history_data);
+                }
+            });
+
+        });
+    });
+</script>
 <input type="hidden" id="course-id" value="1080176" />
 <input type="hidden" id="is_sign" value="0" />
 <input type="hidden" id="is_qr_sign" value="0" />
@@ -419,154 +485,15 @@
                     </div>
                     <div>签到中</div>
                 </div>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $.get("/api/v1/sign/history_info", function (data, status) {
-                //todo ajax设置签到历史记录
-                //alert(data.count);
-                var $today_info = $(".today-info");
-                $today_info.find(".sign-date").first().html(data.today+"今天");
-                $today_info.find(".sign-count").first().html(data.today+"今天")
-            });
-        });
-    </script>
+
                 <div class="today-info">
-                    <span class="sign-date">2019-03-13今天</span>
-                    <span class="sign-count">已完成3次签到</span>
+                    <span class="sign-date"></span>
+                    <span class="sign-count"></span>
                 </div>
             </li>
             <ul class="history-info">
                 <li class="present-data">
                     <ul class="detail-data">
-                        <li class="history-item" data-id="1457690">
-                        <span>
-                            <i class="sign-index">3</i>00:21
-                            <i class="sign-icon fa "></i>
-                        </span>
-                            <span class="sign-ratio" id="sign-ratio-1457690">0 (0%)</span>
-                        </li>
-                        <li class="history-item" data-id="1457689">
-                        <span>
-                            <i class="sign-index">2</i>00:19
-                            <i class="sign-icon fa fa-qrcode"></i>
-                        </span>
-                            <span class="sign-ratio" id="sign-ratio-1457689">0 (0%)</span>
-                        </li>
-                        <li class="history-item" data-id="1457687">
-                        <span>
-                            <i class="sign-index">1</i>00:00
-                            <i class="sign-icon fa fa-map-marker"></i>
-                        </span>
-                            <span class="sign-ratio" id="sign-ratio-1457687">0 (0%)</span>
-                        </li>
-                    </ul>
-                </li>
-                <li class="history-data">
-                    <div><span class="sign-date">2019-03-12</span><span class="sign-count">1次签到</span></div>
-                    <ul class="detail-data">
-                        <li class="history-item" data-id="1457686">
-                            <span><i class="sign-index">1</i>23:32
-                            <i class="sign-icon fa "></i>
-                            </span>
-                            <span class="sign-ratio" id="sign-ratio-1457686">0 (0%)</span>
-                        </li>
-                    </ul>
-                </li>
-                <li class="history-data">
-                    <div><span class="sign-date">2019-03-09</span><span class="sign-count">2次签到</span></div>
-                    <ul class="detail-data">
-                        <li class="history-item" data-id="1452872">
-                            <span><i class="sign-index">2</i>17:22
-                            <i class="sign-icon fa "></i>
-                            </span>
-                            <span class="sign-ratio" id="sign-ratio-1452872">0 (0%)</span>
-                        </li>
-                        <li class="history-item" data-id="1452871">
-                            <span><i class="sign-index">1</i>17:16
-                            <i class="sign-icon fa fa-qrcode"></i>
-                            </span>
-                            <span class="sign-ratio" id="sign-ratio-1452871">0 (0%)</span>
-                        </li>
-                    </ul>
-                </li>
-                <li class="history-data">
-                    <div><span class="sign-date">2019-02-27</span><span class="sign-count">2次签到</span></div>
-                    <ul class="detail-data">
-                        <li class="history-item" data-id="1438401">
-                            <span><i class="sign-index">2</i>21:52
-                            <i class="sign-icon fa "></i>
-                            </span>
-                            <span class="sign-ratio" id="sign-ratio-1438401">0 (0%)</span>
-                        </li>
-                        <li class="history-item" data-id="1438399">
-                            <span><i class="sign-index">1</i>21:50
-                            <i class="sign-icon fa fa-qrcode"></i>
-                            </span>
-                            <span class="sign-ratio" id="sign-ratio-1438399">0 (0%)</span>
-                        </li>
-                    </ul>
-                </li>
-                <li class="history-data">
-                    <div><span class="sign-date">2019-02-26</span><span class="sign-count">4次签到</span></div>
-                    <ul class="detail-data">
-                        <li class="history-item" data-id="1436717">
-                            <span><i class="sign-index">4</i>22:54
-                            <i class="sign-icon fa "></i>
-                            </span>
-                            <span class="sign-ratio" id="sign-ratio-1436717">0 (0%)</span>
-                        </li>
-                        <li class="history-item" data-id="1436681">
-                            <span><i class="sign-index">3</i>21:47
-                            <i class="sign-icon fa fa-map-marker"></i>
-                            </span>
-                            <span class="sign-ratio" id="sign-ratio-1436681">0 (0%)</span>
-                        </li>
-                        <li class="history-item" data-id="1436679">
-                            <span><i class="sign-index">2</i>21:42
-                            <i class="sign-icon fa fa-map-marker"></i>
-                            </span>
-                            <span class="sign-ratio" id="sign-ratio-1436679">0 (0%)</span>
-                        </li>
-                        <li class="history-item" data-id="1436677">
-                            <span><i class="sign-index">1</i>21:40
-                            <i class="sign-icon fa fa-map-marker"></i>
-                            </span>
-                            <span class="sign-ratio" id="sign-ratio-1436677">0 (0%)</span>
-                        </li>
-                    </ul>
-                </li>
-                <li class="history-data">
-                    <div><span class="sign-date">2019-02-25</span><span class="sign-count">2次签到</span></div>
-                    <ul class="detail-data">
-                        <li class="history-item" data-id="1435181">
-                            <span><i class="sign-index">2</i>23:13
-                            <i class="sign-icon fa fa-map-marker"></i>
-                            </span>
-                            <span class="sign-ratio" id="sign-ratio-1435181">0 (0%)</span>
-                        </li>
-                        <li class="history-item" data-id="1435180">
-                            <span><i class="sign-index">1</i>23:13
-                            <i class="sign-icon fa "></i>
-                            </span>
-                            <span class="sign-ratio" id="sign-ratio-1435180">0 (0%)</span>
-                        </li>
-                    </ul>
-                </li>
-                <li class="history-data">
-                    <div><span class="sign-date">2019-02-17</span><span class="sign-count">2次签到</span></div>
-                    <ul class="detail-data">
-                        <li class="history-item" data-id="1431964">
-                            <span><i class="sign-index">2</i>16:00
-                            <i class="sign-icon fa "></i>
-                            </span>
-                            <span class="sign-ratio" id="sign-ratio-1431964">0 (0%)</span>
-                        </li>
-                        <li class="history-item" data-id="1431963">
-                            <span><i class="sign-index">1</i>15:50
-                            <i class="sign-icon fa "></i>
-                            </span>
-                            <span class="sign-ratio" id="sign-ratio-1431963">0 (0%)</span>
-                        </li>
                     </ul>
                 </li>
             </ul>

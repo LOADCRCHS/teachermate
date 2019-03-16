@@ -25,7 +25,7 @@ public class Sign {
     private Integer order = 1;
     private Integer minutes;
     private Integer seconds;
-    private Integer courseId;
+    private Integer course_id;
 
     public String getGps() {
         return isGps + "";

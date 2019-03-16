@@ -23,7 +23,7 @@ public class SignServiceImpl implements SignService {
         Map<String, Object> result = new HashMap<>();
         Sign sign = new Sign();
         sign.setIsGps(is_gps == null ? 0 : is_gps);
-        sign.setCourseId(course_id);
+        sign.setCourse_id(course_id);
         signDao.create(sign);
         result.put("sign", sign);
         return result;
@@ -73,9 +73,7 @@ public class SignServiceImpl implements SignService {
 
     @Override
     public List<SignInfo> getHistoryInfo(Integer course_id) {
-        Sign sign = new Sign();
-        sign.setCourseId(course_id);
-        List<SignInfo> signInfos = signDao.selectSignInfo(sign);
+        List<SignInfo> signInfos = signDao.selectSignInfo(course_id);
 //        signInfos.sort(new Comparator<SignInfo>() {
 //            @Override
 //            public int compare(SignInfo o1, SignInfo o2) {
@@ -83,9 +81,10 @@ public class SignServiceImpl implements SignService {
 //            }
 //        });
 //        signInfos.sort((o1, o2) -> o1.getDate().compareTo(o2.getDate()));
-        signInfos.sort(Comparator.comparing(SignInfo::getDate));
-        for (SignInfo signInfo:signInfos){
-            signInfo.getSignHistoryDetail().sort(Comparator.comparing(SignInfoDetail::getOrder));
+//        signInfos.sort(Comparator.comparing(SignInfo::getDate));
+        for (SignInfo signInfo : signInfos) {
+            List<SignInfoDetail> signInfoDetails = signDao.selectSignInfoDetail(signInfo.getDate(), course_id);
+            signInfo.setDetails(signInfoDetails);
         }
         return signInfos;
     }

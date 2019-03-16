@@ -10,7 +10,8 @@
 
     <update id="close" parameterType="int">
         update sign
-        set close_time = now()
+        set close_time = now(),
+            duration   = now() - date
         where id = #{id}
     </update>
 
@@ -21,7 +22,7 @@
     </update>
 
     <sql id="select_sql">
-        select id, date, isGps, sign_student_count, ratio, close_time, isQr
+        select *
         from sign
         where is_del = 0
     </sql>
@@ -46,17 +47,20 @@
     </select>
 
     <select id="selectSignInfo" resultType="SignInfo" parameterType="Integer">
-        select DATE_FORMAT(date, '%Y-%m-%d') as date, COUNT(*) count
+        select DATE(date) as date, COUNT(*) as sum
         from sign
         WHERE course_id = #{course_id}
-        GROUP BY DATE_FORMAT(date, '%Y-%m-%d')
+          and is_del = 0
+        GROUP BY DATE(date)
         order by date desc;
     </select>
 
-    <select id="selectSignInfoDetail" resultType="SignInfoDetail" parameterType="String">
-        select id, DATE_FORMAT(date, '%H:%i') time, ratio, sign_student_count count
+    <select id="selectSignInfoDetail" resultType="SignInfoDetail">
+        select id, DATE_FORMAT(date, '%H:%i:%s') time, ratio, sign_student_count count, isGps
         from sign
-        where DATE_FORMAT(date, '%Y-%m-%d') = #{date}
+        where DATE(date) = #{date}
+          and course_id = #{course_id}
+          and is_del = 0
         order by time desc;
     </select>
 

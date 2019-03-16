@@ -11,5 +11,5 @@ public class SignInfoDetail {
     private String ratio;
     private Integer count;
     private Integer order;
-
+    private boolean isGps;
 }
