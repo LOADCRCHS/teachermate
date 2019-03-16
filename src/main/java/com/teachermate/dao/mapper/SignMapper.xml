@@ -45,10 +45,19 @@
         </where>
     </select>
 
-    <select id="selectSignInfo" resultType="SignInfo" parameterType="course_id">
-        select *
+    <select id="selectSignInfo" resultType="SignInfo" parameterType="Integer">
+        select DATE_FORMAT(date, '%Y-%m-%d') as date, COUNT(*) count
         from sign
-        where course_id = #{course_id}
+        WHERE course_id = #{course_id}
+        GROUP BY DATE_FORMAT(date, '%Y-%m-%d')
+        order by date desc;
+    </select>
+
+    <select id="selectSignInfoDetail" resultType="SignInfoDetail" parameterType="String">
+        select id, DATE_FORMAT(date, '%H:%i') time, ratio, sign_student_count count
+        from sign
+        where DATE_FORMAT(date, '%Y-%m-%d') = #{date}
+        order by time desc;
     </select>
 
 </mapper>

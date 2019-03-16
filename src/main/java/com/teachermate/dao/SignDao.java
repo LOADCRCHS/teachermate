@@ -2,7 +2,9 @@ package com.teachermate.dao;
 
 import com.teachermate.pojo.Sign;
 import com.teachermate.pojo.SignInfo;
+import com.teachermate.pojo.SignInfoDetail;
 
+import java.util.Date;
 import java.util.List;
 
 public interface SignDao {
@@ -18,6 +20,7 @@ public interface SignDao {
 
     List<Sign> select(Sign sign);
 
-    //todo 编写mapper文件
-    List<SignInfo> selectSignInfo(Sign sign);
+    List<SignInfo> selectSignInfo(Integer course_id);
+
+    List<SignInfoDetail> selectSignInfoDetail(String date);
 }

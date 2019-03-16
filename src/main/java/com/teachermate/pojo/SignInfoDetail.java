@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class SignInfoDetail {
-    private Integer signId;
+    private Integer id;
     @JsonFormat(pattern = " HH:mm", timezone = "GMT+8")
     private String time;
     private String ratio;
