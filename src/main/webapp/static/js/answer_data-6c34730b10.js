@@ -49,6 +49,7 @@ $(function () {
 
     function t(e, t, i) {
         e ? G = e : e = G, M.hasClass("grouped") ? M.find(".switch-group").attr("checked", "checked") : M.find(".switch-group").removeAttr("checked");
+        //todo 修改跳转路径
         var n = !(window.location.href.indexOf("#paper") < 0), a = _.size(e), o = _.reduce(e, function (e, t, i) {
             n && (t.stateCount = [t.stateCount[2], t.stateCount[1]]);
             var a = _.map(t.stateCount, function (e, t) {
@@ -745,7 +746,7 @@ $(function () {
     };
     var ee = function (e) {
         $.post("question", e).done(function (e) {
-            var t = {msg: "编辑题目出错, 请稍后重试"};
+            var t = {msg: "编辑题目出错, 请稍后重试!!!"};
             try {
                 t = JSON.parse(e)
             } catch (i) {
