@@ -24,6 +24,17 @@
             <li class="layui-nav-item">
                 <a href="javascript:;" onclick="$('#main-content').load('sign')">签到</a>
             </li>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    var n = window.location.href;
+                    if (n.match("question_id=")){
+                        // n = n.replace(/\/\?question_id=\d*/, "");
+                        // window.location.href = n;
+                        // todo 彻底修改url
+                        $('#main-content').load('question_detail');
+                    }
+                })
+            </script>
             <li class="layui-nav-item">
                 <a href="javascript:;" onclick="$('#main-content').load('question_detail')">答题</a>
             </li>

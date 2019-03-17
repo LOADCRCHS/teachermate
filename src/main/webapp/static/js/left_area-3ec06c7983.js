@@ -350,7 +350,7 @@
                 }
                 if (t.msg) alert(t.msg); else {
                     var n = window.location.href, o = t.id;
-                    o && (n.match("question_id=") ? n = n.replace(/question_id=\d*/, "question_id=" + o) : n += "?question_id=" + o), window.location.href = n; $('#main-content').load('question_detail')
+                    o && (n.match("question_id=") ? n = n.replace(/question_id=\d*/, "question_id=" + o) : n += "?question_id=" + o), window.location.href = n
                 }
             }))
         }
