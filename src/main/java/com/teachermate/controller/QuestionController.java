@@ -32,9 +32,13 @@ public class QuestionController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String createQuestion() {
+    public Map<String, Integer> createQuestion(Question question) {
         System.out.println("---------- 1 ---------");
-        //questionService.create(question);
-        return "{\"id\":4915024,\"type\":3,\"code\":\"T0004\",\"content\":\"<p>1233333</p>\",\"choice\":\"BA\",\"answer\":\"\",\"review\":\"\",\"answerContent\":{\"A\":\"22\",\"B\":\"33\",\"C\":\"44\",\"D\":\"11\"},\"picContent\":{\"A\":\"\",\"B\":\"\",\"C\":\"\",\"D\":\"\"},\"chapterId\":0,\"difficultLevel\":1,\"is_item_score\":1,\"answerOpen\":0,\"onTime\":1,\"answerDuration\":5,\"questionDuration\":null,\"timing\":0,\"openTime\":null,\"lastOpenTime\":null,\"answered\":0,\"teacherId\":1113334,\"strict\":0,\"case_sensitive\":0,\"subNum\":0,\"refNum\":0,\"summary\":\"1233333\",\"cover\":\"\"}";
+        questionService.create(question);
+        Map<String, Integer> result = new HashMap<>();
+        result.put("id",question.getId());
+        return result;
+
+//        return "{\"id\":4915024,\"type\":3,\"code\":\"T0004\",\"content\":\"<p>1233333</p>\",\"choice\":\"BA\",\"answer\":\"\",\"review\":\"\",\"answerContent\":{\"A\":\"22\",\"B\":\"33\",\"C\":\"44\",\"D\":\"11\"},\"picContent\":{\"A\":\"\",\"B\":\"\",\"C\":\"\",\"D\":\"\"},\"chapterId\":0,\"difficultLevel\":1,\"is_item_score\":1,\"answerOpen\":0,\"onTime\":1,\"answerDuration\":5,\"questionDuration\":null,\"timing\":0,\"openTime\":null,\"lastOpenTime\":null,\"answered\":0,\"teacherId\":1113334,\"strict\":0,\"case_sensitive\":0,\"subNum\":0,\"refNum\":0,\"summary\":\"1233333\",\"cover\":\"\"}";
     }
 }

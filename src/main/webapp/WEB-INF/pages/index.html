@@ -28,9 +28,9 @@
                 $(document).ready(function () {
                     var n = window.location.href;
                     if (n.match("question_id=")){
+                        // todo 彻底修改url
                         // n = n.replace(/\/\?question_id=\d*/, "");
                         // window.location.href = n;
-                        // todo 彻底修改url
                         $('#main-content').load('question_detail');
                     }
                 })
