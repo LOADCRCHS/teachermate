@@ -51,17 +51,6 @@ public class SignController {
 
     @RequestMapping(value = "sign/history_info/{course_id}", method = RequestMethod.GET)
     public List<SignInfo> get_sign_history(@PathVariable Integer course_id) {
-//        course_id = 1;
-        List<SignInfo> infos = signService.getHistoryInfo(course_id);
-        for (SignInfo info : infos) {
-            System.out.println("info.date -- " + info.getDate());
-            System.out.println("info.count -- " + info.getSum());
-            System.out.println("---------------");
-            for (SignInfoDetail detail : info.getDetails()) {
-                System.out.println(detail.toString());
-            }
-            System.out.println("---------------");
-        }
         return signService.getHistoryInfo(course_id);
     }
 

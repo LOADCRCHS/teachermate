@@ -1,7 +1,7 @@
-package com.teachermate.dao;
+package com.teachermate.service;
 
 import com.teachermate.pojo.Question;
 
-public interface QuestionDao {
+public interface QuestionService {
     void create(Question question);
 }
