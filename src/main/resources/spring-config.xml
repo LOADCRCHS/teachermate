@@ -17,10 +17,15 @@
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
     </bean>
+
+    <bean id="arrayTypeHandler" class="com.teachermate.util.ArrayTypeHandler"/>
+
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+
         <property name="dataSource" ref="dataSource"/>
         <property name="mapperLocations" value="classpath:com/teachermate/dao/mapper/*.xml"/>
         <property name="typeAliasesPackage" value="com.teachermate.pojo"/>
+        <property name="typeHandlers" ref="arrayTypeHandler"/>
         <property name="plugins">
             <array>
                 <bean class="com.github.pagehelper.PageHelper">

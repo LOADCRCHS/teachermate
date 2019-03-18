@@ -2,15 +2,18 @@ package com.teachermate.controller;
 
 import com.teachermate.pojo.Question;
 import com.teachermate.service.QuestionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/question")
 public class QuestionController {
+    @Autowired
     private QuestionService questionService;
 
     @RequestMapping(value = "/get_answer_detail/{id}", method = RequestMethod.GET)
@@ -31,10 +34,22 @@ public class QuestionController {
 
     @RequestMapping(method = RequestMethod.POST)
     public String createQuestion(Integer type, Integer course_id, Integer chapter_id
-            , Integer difficult_level, String content, String[] answers
-            , boolean strict, boolean case_sensitive
-            , String[] answer_type, Integer teacherId
-            , String answer_content, String pic_content) {
+            , Integer difficult_level, String content, boolean strict, boolean case_sensitive
+            , @RequestParam("answers[]") String[] answers
+            , @RequestParam("answer_type[]") String[] answer_type
+            , Integer teacherId, String answer_content, String pic_content, HttpServletRequest request) {
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        String answers1 = request.getParameter("answers[]");
+        System.out.println(" --- " + answers1);
+        String[] strings = parameterMap.get("answers[]");
+        for (String s:strings){
+            System.out.println(s);
+            System.out.println("----------------------------");
+        }
+        Set<Map.Entry<String, String[]>> entries = parameterMap.entrySet();
+        for (Map.Entry<String, String[]> entry : entries) {
+            System.out.println("-- " + entry.getKey() + " --");
+        }
         Question question = new Question();
         question.setType(type);
         question.setCourse_id(course_id);
@@ -48,6 +63,7 @@ public class QuestionController {
         question.setPic_content(pic_content);
         question.setStrict(strict);
         question.setCase_sensitive(case_sensitive);
+        question.setCode(type);
         questionService.create(question);
 
         return "{\",id\\\":4915024\"type\":3,\"code\":\"T0004\",\"content\":\"<p>1233333</p>\",\"choice\":\"BA\",\"answer\":\"\",\"review\":\"\",\"answerContent\":{\"A\":\"22\",\"B\":\"33\",\"C\":\"44\",\"D\":\"11\"},\"picContent\":{\"A\":\"\",\"B\":\"\",\"C\":\"\",\"D\":\"\"},\"chapterId\":0,\"difficultLevel\":1,\"is_item_score\":1,\"answerOpen\":0,\"onTime\":1,\"answerDuration\":5,\"questionDuration\":null,\"timing\":0,\"openTime\":null,\"lastOpenTime\":null,\"answered\":0,\"teacherId\":1113334,\"strict\":0,\"case_sensitive\":0,\"subNum\":0,\"refNum\":0,\"summary\":\"1233333\",\"cover\":\"\"}";

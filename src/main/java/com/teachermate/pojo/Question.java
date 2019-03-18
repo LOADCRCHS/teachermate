@@ -4,6 +4,7 @@ import com.teachermate.util.QuestionType;
 import lombok.Data;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Data
 public class Question {
@@ -32,25 +33,9 @@ public class Question {
     private boolean case_sensitive;
     private String code;
 
+    final static String[] QUESTION_TYPE = {"T0001", "T0002", "T0003", "T0004", "T0005"};
+
     public void setCode(Integer type) {
-        switch (type) {
-            case 1:
-                this.code = QuestionType.one;
-                break;
-            case 2:
-                this.code = QuestionType.two;
-                break;
-            case 3:
-                this.code = QuestionType.three;
-                break;
-            case 4:
-                this.code = QuestionType.four;
-                break;
-            case 5:
-                this.code = QuestionType.five;
-                break;
-            default:
-                this.code = QuestionType.one;
-        }
+        this.code = QUESTION_TYPE[type - 1];
     }
 }

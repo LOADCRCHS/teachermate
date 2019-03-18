@@ -1,11 +1,11 @@
 package com.teachermate.util;
 
-import org.apache.ibatis.type.BaseTypeHandler;
-import org.apache.ibatis.type.JdbcType;
-import org.apache.ibatis.type.TypeException;
+import org.apache.ibatis.type.*;
 
 import java.sql.*;
 
+@MappedJdbcTypes(JdbcType.VARCHAR)
+@MappedTypes(String[].class)
 public class ArrayTypeHandler extends BaseTypeHandler<Object[]> {
     private static final String TYPE_NAME_VARCHAR = "varchar";
     private static final String TYPE_NAME_INTEGER = "integer";
@@ -13,8 +13,9 @@ public class ArrayTypeHandler extends BaseTypeHandler<Object[]> {
     private static final String TYPE_NAME_NUMERIC = "numeric";
 
     @Override
-    public void setNonNullParameter(PreparedStatement preparedStatement, int param, Object[] parameter, JdbcType jdbcType) throws SQLException {
+    public void setNonNullParameter(PreparedStatement preparedStatement, int parameterIndex, Object[] parameter, JdbcType jdbcType) throws SQLException {
         String typeName = null;
+        System.out.println();
         if (parameter instanceof Integer[]) {
             typeName = TYPE_NAME_INTEGER;
         } else if (parameter instanceof String[]) {
@@ -27,9 +28,17 @@ public class ArrayTypeHandler extends BaseTypeHandler<Object[]> {
         if (typeName == null) {
             throw new TypeException("ArrayTypeHandler parameter typeName error, your type is " + parameter.getClass().getName());
         }
+        System.out.println("------");
+        for (Object o : parameter){
+            System.out.println(o.toString());
+        }
+        System.out.println("------");
         Connection connection = preparedStatement.getConnection();
+        System.out.println("------");
         Array array = connection.createArrayOf(typeName, parameter);
-        preparedStatement.setArray(param, array);
+        System.out.println(array.toString());
+        System.out.println("------");
+        preparedStatement.setArray(parameterIndex, array);
     }
 
     @Override
