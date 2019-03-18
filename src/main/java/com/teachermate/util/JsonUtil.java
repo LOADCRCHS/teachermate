@@ -22,7 +22,7 @@ public class JsonUtil {
         return stringWriter.toString();
     }
 
-    public static <T> T toObject(String string, Class<T> clazz) {
+    public static <T> T getObject(String string, Class<T> clazz) {
         try {
             return mapper.readValue(string,clazz);
         } catch (IOException e) {

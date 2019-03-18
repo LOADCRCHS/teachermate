@@ -4,22 +4,42 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.teachermate.dao.QuestionDao">
     <insert id="create" parameterType="Question" keyProperty="id" useGeneratedKeys="true">
-        insert into question (teacherId, pic_content, answer_content, strict,
-                              answer_duration, answer_type,
-                              answers, content, difficult_id, chapter_id, courseId)
-        VALUES (#{teacherId}, #{pic_content}, #{answer_content}, #{strict},
-                #{answer_duration}, #{answer_type},
-                #{answers},#{content},#{difficult_id},#{chapter_id},#{courseId});
+        insert into question (teacherId,
+                              pic_content,
+                              answer_content,
+                              strict,
+                              answer_duration,
+                              answer_type,
+                              answers,
+                              content,
+                              difficult_id,
+                              chapter_id,
+                              course_id,
+                              case_sensitive,
+                              code)
+        VALUES (#{teacherId},
+                #{pic_content},
+                #{answer_content},
+                #{strict},
+                #{answer_duration},
+                #{answer_type,typeHandler=com.teachermate.util.ArrayTypeHandler},
+                #{answers,typeHandler=com.teachermate.util.ArrayTypeHandler},
+                #{content},
+                #{difficult_id},
+                #{chapter_id},
+                #{course_id},
+                #{case_sensitive},
+                #{code});
     </insert>
     <resultMap id="selectMap" type="Question">
         <result property="id" column="id"/>
         <result property="teacherId" column="teacherId"/>
-        <result property="pic_content" column="pic_content" typeHandler=""/>
+        <result property="pic_content" column="pic_content"/>
         <result property="answer_content" column="answer_content"/>
         <result property="strict" column="strict"/>
         <result property="answer_duration" column="answer_duration"/>
-        <result property="answer_type" column="answer_type"/>
-        <result property="answers" column="answers"/>
+        <result property="answer_type" column="answer_type" typeHandler="com.teachermate.util.ArrayTypeHandler"/>
+        <result property="answers" column="answers" typeHandler="com.teachermate.util.ArrayTypeHandler"/>
         <result property="difficult_id" column="difficult_id"/>
         <result property="chapter_id" column="chapter_id"/>
         <result property="courseId" column="courseId"/>

@@ -24,16 +24,16 @@ public class JsonTypeHandler<T extends Object> extends BaseTypeHandler<T> {
 
     @Override
     public T getNullableResult(ResultSet resultSet, String column_name) throws SQLException {
-        return JsonUtil.toObject(resultSet.getString(column_name),clazz);
+        return JsonUtil.getObject(resultSet.getString(column_name),clazz);
     }
 
     @Override
     public T getNullableResult(ResultSet resultSet, int column_index) throws SQLException {
-        return JsonUtil.toObject(resultSet.getString(column_index),clazz);
+        return JsonUtil.getObject(resultSet.getString(column_index),clazz);
     }
 
     @Override
     public T getNullableResult(CallableStatement callableStatement, int column_index) throws SQLException {
-        return JsonUtil.toObject(callableStatement.getString(column_index),clazz);
+        return JsonUtil.getObject(callableStatement.getString(column_index),clazz);
     }
 }
