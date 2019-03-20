@@ -9,15 +9,14 @@ import java.sql.*;
 
 @MappedJdbcTypes({JdbcType.VARCHAR})
 public class ArrayTypeHandler extends BaseTypeHandler<Object[]> {
-    private static final String TYPE_NAME_VARCHAR = "varchar";
+    private static final String SPLIT_CHAR = "※";
 
     @Override
     public void setNonNullParameter(PreparedStatement preparedStatement, int parameterIndex, Object[] parameter, JdbcType jdbcType) throws SQLException {
         StringBuilder str_param = new StringBuilder();
         for (Object str : parameter) {
             str_param.append(str);
-            //todo 需要一个手写不出来的符号做分割符
-            str_param.append(",");
+            str_param.append(SPLIT_CHAR);
         }
         str_param.delete(str_param.length() - 1, str_param.length());
         preparedStatement.setString(parameterIndex, str_param.toString());
@@ -42,6 +41,6 @@ public class ArrayTypeHandler extends BaseTypeHandler<Object[]> {
         if (str == null) {
             return null;
         }
-        return str.split(",");
+        return str.split(SPLIT_CHAR);
     }
 }
