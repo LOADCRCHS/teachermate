@@ -36,27 +36,23 @@ public class QuestionController {
     @RequestMapping(method = RequestMethod.POST)
     public String createQuestion(Integer type, Integer course_id, Integer chapter_id
             , Integer difficult_level, String content, boolean strict, boolean case_sensitive
-            , @RequestParam("answers[]") String[] answers
+            , String answers
             , @RequestParam("answer_type[]") String[] answer_type
             , Integer teacherId, String answer_content, String pic_content, HttpServletRequest request) {
-        Map<String, String[]> parameterMap = request.getParameterMap();
-        String answers1 = request.getParameter("answers[]");
-        System.out.println(" --- " + answers1);
-        String[] strings = parameterMap.get("answers[]");
-        for (String s:strings){
-            System.out.println(s);
-            System.out.println("----------------------------");
-        }
-        Set<Map.Entry<String, String[]>> entries = parameterMap.entrySet();
-        for (Map.Entry<String, String[]> entry : entries) {
-            System.out.println("-- " + entry.getKey() + " --");
-        }
+
         Question question = new Question();
+        String[] answerArray;
+        if (answers == null) {
+            Map<String, String[]> parameterMap = request.getParameterMap();
+            answerArray = parameterMap.get("answers[]");
+        } else {
+            answerArray = new String[]{answers};
+        }
         question.setType(type);
         question.setCourse_id(course_id);
         question.setDifficult_level(difficult_level);
         question.setContent(content);
-        question.setAnswers(answers);
+        question.setAnswers(answerArray);
         question.setChapter_id(chapter_id);
         question.setAnswer_type(answer_type);
         question.setTeacherId(teacherId);

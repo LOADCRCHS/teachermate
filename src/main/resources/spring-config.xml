@@ -18,7 +18,13 @@
         <property name="password" value="${jdbc.password}"/>
     </bean>
 
-    <bean id="arrayTypeHandler" class="com.teachermate.util.ArrayTypeHandler"/>
+    <bean id="typeHandleConfig" class="org.apache.ibatis.session.Configuration">
+        <property name="jdbcTypeForNull" value="VARCHAR"/>
+    </bean>
+
+    <bean id="arrayTypeHandler" class="com.teachermate.util.ArrayTypeHandler">
+        <property name="configuration" ref="typeHandleConfig"/>
+    </bean>
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 
@@ -50,7 +56,6 @@
     <context:component-scan base-package="com.teachermate.service.impl">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>
-
 
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

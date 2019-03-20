@@ -9,7 +9,9 @@
                               answer_content,
                               strict,
                               answer_duration,
-                              answer_type,
+
+
+
                               answers,
                               content,
                               difficult_level,
@@ -22,7 +24,9 @@
                 #{answer_content},
                 #{strict},
                 #{answer_duration},
-                #{answer_type,typeHandler=com.teachermate.util.ArrayTypeHandler},
+
+
+
                 #{answers,typeHandler=com.teachermate.util.ArrayTypeHandler},
                 #{content},
                 #{difficult_level},
