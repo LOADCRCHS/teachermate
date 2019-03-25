@@ -44,4 +44,10 @@
         <result property="chapter_id" column="chapter_id"/>
         <result property="courseId" column="courseId"/>
     </resultMap>
+
+    <select id="selectByCourseId" resultMap="selectMap">
+        select *
+        from question
+        where course_id = #{courseId}
+    </select>
 </mapper>

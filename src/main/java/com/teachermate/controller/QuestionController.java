@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -62,5 +63,13 @@ public class QuestionController {
         questionService.create(question);
 
         return question;
+    }
+
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public Map<String, List<Question>> list(Integer courseId) {
+        List<Question> questions = questionService.getQues(courseId);
+
+        Map<String, List<Question>> result = new HashMap<>();
+        return null;
     }
 }
