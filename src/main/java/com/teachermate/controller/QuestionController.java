@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,11 +66,19 @@ public class QuestionController {
         return question;
     }
 
-    @RequestMapping(value = "list", method = RequestMethod.GET)
-    public Map<String, List<Question>> list(Integer courseId) {
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public Map<String, Object> list(Integer courseId) {
+        Map<String, Object> result = new HashMap<>();
         List<Question> questions = questionService.getQues(courseId);
+        Map<String, Object> course_info = new HashMap<>();
+        course_info.put("course_id", "1080176");
+        course_info.put("name", "233");
+        course_info.put("library_id", "91327");
+        course_info.put("duration_rule", "5");
+        course_info.put("answer_open_rule", "1");
+        result.put("single", questions);
+        result.put("course_info", course_info);
 
-        Map<String, List<Question>> result = new HashMap<>();
-        return null;
+        return result;
     }
 }

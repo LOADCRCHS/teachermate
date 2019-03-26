@@ -15,6 +15,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public void create(Question question) {
+
         questionDao.create(question);
     }
 

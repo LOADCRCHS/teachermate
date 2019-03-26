@@ -47,28 +47,18 @@
 
     <resultMap id="questions_vo" type="Question">
         <result property="question_id" column="id"/>
-        <result property="chapter_id" column="chapter_id"/>
         <result property="content" column="content"/>
         <result property="type" column="type"/>
-        <result property="describe" column="describe"/>
         <result property="difficult_level" column="difficult_level"/>
-        <result property="question_open" column="question_open"/>
-        <result property="answer_open" column="answer_open"/>
-        <result property="paper_id" column="paper_id"/>
         <result property="serial_number" column="serial_number"/>
-        <result property="review" column="review"/>
-        <result property="review_open" column="review_open"/>
-        <result property="create_time" column="create_time"/>
         <result property="answer_count" column="answer_count"/>
-        <result property="right_count" column="right_count"/>
-        <result property="is_answered" column="is_answered"/>
-        <result property="answer_ratio" column="answer_ratio"/>
         <result property="count_ratio" column="count_ratio"/>
     </resultMap>
 
-    <select id="selectByCourseId" resultMap="selectMap">
-        select *
+    <select id="selectByCourseId" resultMap="questions_vo">
+        select id, content, type, difficult_level, serial_number, answer_count, count_ratio
         from question
         where course_id = #{courseId}
+        order by type desc;
     </select>
 </mapper>
