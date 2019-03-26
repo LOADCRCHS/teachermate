@@ -59,6 +59,6 @@
         select id, content, type, difficult_level, serial_number, answer_count, count_ratio
         from question
         where course_id = #{courseId}
-        order by type desc;
+        order by serial_number desc;
     </select>
 </mapper>
