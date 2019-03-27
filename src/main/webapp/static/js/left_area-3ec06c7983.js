@@ -10,7 +10,6 @@
     }
 
     function n(e) {
-        alert("n() "+2);
         var t = navigator.userAgent.toLowerCase(), i = t.indexOf("trident/") !== -1;
         i ? window.location.href = "http://" + window.location.host + "/" + e : window.location.href = e
     }
@@ -100,7 +99,6 @@
     }
 
     function g(e) {
-        alert("g(): ");
         var t = e.course.course_id, i = e.question.question_id, n = e.paperId, o = "question/get_que/" + t;
         return q(t, i, n, o)
     }
@@ -111,7 +109,6 @@
     }
 
     function q(e, t, i, o) {
-        alert("q(): "+1);
         var r = window.location.href.match("get_answer_detail") || window.location.href.match("get_courseware_detail");
         if (r || true) {
             var a = new QuestionData(e, t, i, o, (!0)), o = window.location.href;
@@ -256,7 +253,6 @@
         var i = t.question.question_id || t.question.id, n = (t.question.type, t.course.course_id);
         return e.post("question/copy_que", {course_id: n, question_id: i})
     }, R = function (t) {
-        alert("R");
         return t.question ? t.question.type ? g(t) : m(t) : (e(".right-area").empty().append("<p>暂无数据</p>"), "ok")
     }, Q = function (e, i) {
         var n = {course_info: e, chapter_info: i, pre_time: e.duration_rule};

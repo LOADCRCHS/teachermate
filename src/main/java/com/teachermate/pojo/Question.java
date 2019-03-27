@@ -1,6 +1,9 @@
 package com.teachermate.pojo;
 
+import com.teachermate.util.JsonUtil;
 import lombok.Data;
+
+import java.util.HashMap;
 
 @Data
 public class Question {
@@ -31,11 +34,16 @@ public class Question {
     private String serial_number;
     private Integer answer_count;
     private Integer count_ratio;
+    private Integer is_answered;
+    private Integer is_item_score;
+    private Integer library_id;
 
-
-    final static String[] QUESTION_TYPE = {"T0001", "T0002", "T0003", "T0004", "T0005"};
-
-    public void setCode(Integer type) {
-        this.code = QUESTION_TYPE[type - 1];
+    public Integer getStrict() {
+        return this.strict ? 1 : 0;
     }
+
+    public Integer getCase_sensitive() {
+        return this.case_sensitive ? 1 : 0;
+    }
+
 }

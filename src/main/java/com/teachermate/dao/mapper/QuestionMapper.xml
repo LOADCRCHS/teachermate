@@ -31,7 +31,7 @@
                 #{case_sensitive},
                 #{code});
     </insert>
-    <resultMap id="selectMap" type="Question">
+    <resultMap id="questions_map" type="Question">
         <result property="id" column="id"/>
         <result property="teacherId" column="teacherId"/>
         <result property="pic_content" column="pic_content"/>
@@ -45,7 +45,7 @@
         <result property="courseId" column="courseId"/>
     </resultMap>
 
-    <resultMap id="questions_vo" type="Question">
+    <resultMap id="questions_vo_map" type="Question">
         <result property="question_id" column="id"/>
         <result property="content" column="content"/>
         <result property="type" column="type"/>
@@ -55,10 +55,23 @@
         <result property="count_ratio" column="count_ratio"/>
     </resultMap>
 
-    <select id="selectByCourseId" resultMap="questions_vo">
-        select id, content, type, difficult_level, serial_number, answer_count, count_ratio
+    <select id="selectByCourseId" resultMap="questions_vo_map">
+        select id,
+               content,
+               type,
+               difficult_level,
+               serial_number,
+               answer_count,
+               count_ratio,
+               is_answered
         from question
         where course_id = #{courseId}
         order by serial_number desc;
+    </select>
+
+    <select id="selectById" resultMap="questions_map">
+        select *
+        from question
+        where id = #{id}
     </select>
 </mapper>
