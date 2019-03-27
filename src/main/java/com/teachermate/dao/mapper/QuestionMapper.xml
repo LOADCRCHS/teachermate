@@ -16,7 +16,7 @@
                               chapter_id,
                               course_id,
                               case_sensitive,
-                              code)
+                              type)
         VALUES (#{teacherId},
                 #{pic_content},
                 #{answer_content},
@@ -29,7 +29,7 @@
                 #{chapter_id},
                 #{course_id},
                 #{case_sensitive},
-                #{code});
+                #{type});
     </insert>
     <resultMap id="questions_map" type="Question">
         <result property="id" column="id"/>
@@ -55,23 +55,19 @@
         <result property="count_ratio" column="count_ratio"/>
     </resultMap>
 
-    <select id="selectByCourseId" resultMap="questions_vo_map">
-        select id,
-               content,
-               type,
-               difficult_level,
-               serial_number,
-               answer_count,
-               count_ratio,
-               is_answered
+    <sql id="select_question">
+        select *
         from question
+    </sql>
+
+    <select id="selectByCourseId" resultMap="questions_vo_map">
+        <include refid="select_question"/>
         where course_id = #{courseId}
-        order by serial_number desc;
+        order by id desc;
     </select>
 
     <select id="selectById" resultMap="questions_map">
-        select *
-        from question
+        <include refid="select_question"/>
         where id = #{id}
     </select>
 </mapper>

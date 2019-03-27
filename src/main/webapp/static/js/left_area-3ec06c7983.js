@@ -344,7 +344,7 @@
             t && (t = !1, e.post("question", i).done(function (e) {
                 var t = {msg: "创建题目出错, 请稍后重试"};
                 try {
-                    t = JSON.parse(e)
+                    t = e
                 } catch (i) {
                     console.error("error", i)
                 }

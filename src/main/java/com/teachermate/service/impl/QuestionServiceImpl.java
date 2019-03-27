@@ -6,9 +6,12 @@ import com.teachermate.pojo.Course;
 import com.teachermate.pojo.Question;
 import com.teachermate.service.QuestionService;
 import com.teachermate.util.JsonUtil;
+import org.omg.CORBA.ObjectHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.image.AreaAveragingScaleFilter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +30,18 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<Question> getQues(Integer courseId) {
+        List<HashMap<String, Object>> quetion_list = new ArrayList<>();
+        List<Question> questions = questionDao.selectByCourseId(courseId);
+        for (Question question : questions) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("question_id", question.getId());
+            map.put("content",question.getContent());
+            map.put("type", question.getType().toString());
+            map.put("difficult_level",question.getDifficult_level());
+            map.put("serial_number",question.getSerial_number());
+            map.put("answer_count", question.getAnswer_count());
+            map.put("count_ratio", question.getCount_ratio());
+        }
         return questionDao.selectByCourseId(courseId);
     }
 
@@ -56,7 +71,7 @@ public class QuestionServiceImpl implements QuestionService {
         result.put("type", question.getType() + "");
 
         result.put("course_info", course);
-
+        result.put("chapter_info", new ArrayList<>());
         return result;
     }
 }

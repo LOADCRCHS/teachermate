@@ -38,6 +38,13 @@ public class Question {
     private Integer is_item_score;
     private Integer library_id;
 
+    private String describe;
+    private String question_open;
+    private String answer_open;
+    private String paper_id;
+    private String review;
+
+
     public Integer getStrict() {
         return this.strict ? 1 : 0;
     }

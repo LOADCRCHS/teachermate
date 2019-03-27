@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,7 +60,6 @@ public class QuestionController {
         question.setPic_content(pic_content);
         question.setStrict(strict);
         question.setCase_sensitive(case_sensitive);
-//        question.setCode(type);
         questionService.create(question);
 
         return question;
@@ -69,6 +67,7 @@ public class QuestionController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public Map<String, Object> list(Integer courseId) {
+        courseId = 1080176;
         Map<String, Object> result = new HashMap<>();
         List<Question> questions = questionService.getQues(courseId);
         Map<String, Object> course_info = new HashMap<>();
@@ -94,8 +93,8 @@ public class QuestionController {
     }
 
     @RequestMapping(value = "question_edit", method = RequestMethod.POST)
-    public String question_edit(Integer course_id, Integer question_id) {
-        //return questionService.selectById(course_id,question_id);
-        return "{\"question_id\":\"4944168\",\"answer\":[\"12\",\"122\",\"222\",\"3333\",\"333344\",\"123\"],\"content\":\"\\u003Cp\\u003Easdf\\u003C\\/p\\u003E\\u003Chr\\u003E\\u003Cp\\u003E____ ____ ____ ____ ____ ____&nbsp;\\u003C\\/p\\u003E\",\"answer_content\":\"{}\",\"pic_content\":\"{}\",\"type\":\"2\",\"difficulty\":\"1\",\"chapter_id\":\"0\",\"library_id\":\"103428\",\"answer_duration\":\"5\",\"is_item_score\":1,\"case_sensitive\":0,\"strict\":0,\"answered\":\"1\",\"course_info\":{\"course_id\":\"1092146\",\"name\":\"233\",\"library_id\":\"103428\"},\"chapter_info\":[]}";
+    public Map<String, Object> question_edit(Integer course_id, Integer question_id) {
+        return questionService.selectById(course_id,question_id);
+//        return "{\"question_id\":\"4944168\",\"answer\":[\"12\",\"122\",\"222\",\"3333\",\"333344\",\"123\"],\"content\":\"\\u003Cp\\u003Easdf\\u003C\\/p\\u003E\\u003Chr\\u003E\\u003Cp\\u003E____ ____ ____ ____ ____ ____&nbsp;\\u003C\\/p\\u003E\",\"answer_content\":\"{}\",\"pic_content\":\"{}\",\"type\":\"2\",\"difficulty\":\"1\",\"chapter_id\":\"0\",\"library_id\":\"103428\",\"answer_duration\":\"5\",\"is_item_score\":1,\"case_sensitive\":0,\"strict\":0,\"answered\":\"1\",\"course_info\":{\"course_id\":\"1092146\",\"name\":\"233\",\"library_id\":\"103428\"},\"chapter_info\":[]}";
     }
 }

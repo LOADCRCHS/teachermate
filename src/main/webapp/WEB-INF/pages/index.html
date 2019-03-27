@@ -8,7 +8,7 @@
 </head>
 <script type="text/javascript">
     //todo course_id undefined
-    var course_id = $("#course-id").val() || 1;
+    var course_id = $("#course-id").val() || 1080176;
     $(document).ready(function () {
         var url = "/question/list?courseId=" + course_id;
         $.get(url,function (_data) {
@@ -23,6 +23,13 @@
                 "courseware": questions.courseware || []
             };
         });
+        var n = window.location.href;
+        if (n.match("question_id=")){
+            // todo 彻底修改url
+            // n = n.replace(/\/\?question_id=\d*/, "");
+            // window.location.href = n;
+            $('#main-content').load('question_detail');
+        }
     });
 </script>
 <body class="layui-layout-body">
@@ -43,17 +50,17 @@
             <li class="layui-nav-item">
                 <a href="javascript:;" onclick="$('#main-content').load('sign')">签到</a>
             </li>
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    var n = window.location.href;
-                    if (n.match("question_id=")){
-                        // todo 彻底修改url
-                        // n = n.replace(/\/\?question_id=\d*/, "");
-                        // window.location.href = n;
-                        $('#main-content').load('question_detail');
-                    }
-                })
-            </script>
+            <!--<script type="text/javascript">-->
+                <!--$(document).ready(function () {-->
+                    <!--var n = window.location.href;-->
+                    <!--if (n.match("question_id=")){-->
+                        <!--// todo 彻底修改url-->
+                        <!--// n = n.replace(/\/\?question_id=\d*/, "");-->
+                        <!--// window.location.href = n;-->
+                        <!--$('#main-content').load('question_detail');-->
+                    <!--}-->
+                <!--})-->
+            <!--</script>-->
             <li class="layui-nav-item">
                 <a href="javascript:;" onclick="$('#main-content').load('question_detail')">答题</a>
             </li>
