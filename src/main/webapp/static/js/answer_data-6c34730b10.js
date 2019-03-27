@@ -748,7 +748,7 @@ $(function () {
         $.post("question", e).done(function (e) {
             var t = {msg: "编辑题目出错, 请稍后重试!!!"};
             try {
-                t = JSON.parse(e)
+                t = e
             } catch (i) {
                 console.error("error", i)
             }

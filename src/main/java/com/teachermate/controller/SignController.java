@@ -36,7 +36,7 @@ public class SignController {
         Course course = courseService.select_one(course_id);
         result.put("signInLogs", new ArrayList<>());
         result.put("sign", sign);
-        // todo course对象里因包含当前课程的所有学生，和所有分组
+        // todo course对象里应包含当前课程的所有学生，和所有分组
         result.put("course", course);
         return result;
     }

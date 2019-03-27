@@ -50,10 +50,10 @@ public class QuestionServiceImpl implements QuestionService {
         Map<String, Object> result = new HashMap<>();
         Course course = courseDao.select_one(course_id);
         Question question = questionDao.selectById(question_id);
-        if (question == null || question.getCourse_id().equals(course_id)) {
-            return null;
-        }
-        //如果是填空题或者填空题
+//        if (question == null || question.getCourse_id().equals(course_id)) {
+//            return null;
+//        }
+        //如果是填空题或者简答题
         if (question.getType() == 2 || question.getType() == 11) {
             result.put("answer", question.getAnswers());
             result.put("answer_content", JsonUtil.getObject(question.getAnswer_content(),HashMap.class));
@@ -95,5 +95,10 @@ public class QuestionServiceImpl implements QuestionService {
             questionDao.update(question);
         }
 
+    }
+
+    @Override
+    public void delete(Integer question_id, Integer course_id, Integer release) {
+        questionDao.delete(question_id);
     }
 }

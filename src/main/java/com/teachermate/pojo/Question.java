@@ -1,9 +1,6 @@
 package com.teachermate.pojo;
 
-import com.teachermate.util.JsonUtil;
 import lombok.Data;
-
-import java.util.HashMap;
 
 @Data
 public class Question {
@@ -35,7 +32,7 @@ public class Question {
     private Integer answer_count;
     private Integer count_ratio;
     private Integer is_answered;
-    private Integer is_item_score;
+    private boolean is_item_score;
     private Integer library_id;
 
     private String describe;
@@ -52,5 +49,14 @@ public class Question {
     public Integer getCase_sensitive() {
         return this.case_sensitive ? 1 : 0;
     }
+
+    public Integer getIs_item_score() {
+        return this.is_item_score ? 1 : 0;
+    }
+
+    public void setIs_item_score(boolean is_item_score) {
+        this.is_item_score = is_item_score;
+    }
+
 
 }

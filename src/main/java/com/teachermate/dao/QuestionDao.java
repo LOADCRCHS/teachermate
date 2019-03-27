@@ -12,4 +12,6 @@ public interface QuestionDao {
     Question selectById(Integer question_id);
 
     void update(Question question);
+
+    void delete(Integer question_id);
 }

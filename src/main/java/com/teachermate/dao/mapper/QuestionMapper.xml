@@ -16,7 +16,8 @@
                               chapter_id,
                               course_id,
                               case_sensitive,
-                              type)
+                              type,
+                              is_item_score)
         VALUES (#{teacherId},
                 #{pic_content},
                 #{answer_content},
@@ -29,8 +30,35 @@
                 #{chapter_id},
                 #{course_id},
                 #{case_sensitive},
-                #{type});
+                #{type},
+                #{is_item_score});
     </insert>
+
+    <update id="update">
+        update question
+        set teacherId       = #{teacherId},
+            type            = #{type},
+            course_id       = #{course_id},
+            chapter_id      = #{chapter_id},
+            difficult_level = #{difficult_level},
+            content         = #{content},
+            answers         = #{answers,typeHandler=com.teachermate.util.ArrayTypeHandler},
+            answer_type     = #{answer_type,typeHandler=com.teachermate.util.ArrayTypeHandler},
+            answer_duration = #{answer_duration},
+            strict          = #{strict},
+            case_sensitive  = #{case_sensitive},
+            is_item_score   = #{is_item_score},
+            pic_content     = #{pic_content},
+            answer_content  = #{answer_content}
+        where id = #{id}
+    </update>
+
+    <update id="delete">
+        update question
+        set is_del = 1
+        where id = #{id};
+    </update>
+
     <resultMap id="questions_map" type="Question">
         <result property="id" column="id"/>
         <result property="teacherId" column="teacherId"/>
@@ -58,16 +86,17 @@
     <sql id="select_question">
         select *
         from question
+        where is_del = 0
     </sql>
 
     <select id="selectByCourseId" resultMap="questions_vo_map">
         <include refid="select_question"/>
-        where course_id = #{courseId}
+        and course_id = #{courseId}
         order by id desc;
     </select>
 
     <select id="selectById" resultMap="questions_map">
         <include refid="select_question"/>
-        where id = #{id}
+        and id = #{id}
     </select>
 </mapper>

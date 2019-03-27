@@ -2,10 +2,13 @@ package com.teachermate.controller;
 
 import com.teachermate.pojo.Question;
 import com.teachermate.service.QuestionService;
+import org.apache.shiro.util.CollectionUtils;
+import org.omg.CORBA.ObjectHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,38 +19,43 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
 
-    @RequestMapping(value = "/get_answer_detail/{id}", method = RequestMethod.GET)
-    public Map<String, Object> get_answer_detail(@PathVariable Integer id, Integer question_id) {
-        // todo 返回的格式修改
-        Map<String, Object> result = new HashMap<>();
-        Map<String, Object> sign = new HashMap<>();
-        sign.put("count", 1);
-        result.put("sign", sign);
-
-        return result;
-    }
-
-
-    @RequestMapping(value = "/answer_team_distribution/{courseId}", method = RequestMethod.GET)
-    public String getQuestion(@PathVariable Integer courseId, Integer question_id) {
-        return "{\"data\":{\"0\":{\"stateCount\":[0,0,1],\"name\":\"\\u672a\\u5206\\u7ec4\"}},\"msg\":\"success\"}";
-    }
+//    @RequestMapping(value = "/get_answer_detail/{id}", method = RequestMethod.GET)
+//    public Map<String, Object> get_answer_detail(@PathVariable Integer id, Integer question_id) {
+//        // todo 返回的格式修改
+//        Map<String, Object> result = new HashMap<>();
+//        Map<String, Object> sign = new HashMap<>();
+//        sign.put("count", 1);
+//        result.put("sign", sign);
+//
+//        return result;
+//    }
+//
+//
+//    @RequestMapping(value = "/answer_team_distribution/{courseId}", method = RequestMethod.GET)
+//    public String getQuestion(@PathVariable Integer courseId, Integer question_id) {
+//        return "{\"data\":{\"0\":{\"stateCount\":[0,0,1],\"name\":\"\\u672a\\u5206\\u7ec4\"}},\"msg\":\"success\"}";
+//    }
 
     @RequestMapping(method = RequestMethod.POST)
     public Question createQuestion(Integer type, Integer course_id, Integer chapter_id
             , Integer difficult_level, String content, boolean strict, boolean case_sensitive
-            , String answers, Integer question_id
-            , @RequestParam("answer_type[]") String[] answer_type
-            , Integer teacherId, String answer_content, String pic_content, HttpServletRequest request) {
+            , String answers, Integer question_id, boolean is_item_score
+            , String[] answer_type, String answer_duration
+            , Integer teacherId, String answer_content, String pic_content
+            , HttpServletRequest request) {
 
         Question question = new Question();
         String[] answerArray;
+        Map<String, String[]> parameterMap = request.getParameterMap();
         if (answers == null) {
-            Map<String, String[]> parameterMap = request.getParameterMap();
             answerArray = parameterMap.get("answers[]");
         } else {
             answerArray = new String[]{answers};
         }
+        if (answer_type == null) {
+            answer_type = parameterMap.get("answer_type[]");
+        }
+
         question.setId(question_id);
         question.setType(type);
         question.setCourse_id(course_id);
@@ -61,6 +69,8 @@ public class QuestionController {
         question.setPic_content(pic_content);
         question.setStrict(strict);
         question.setCase_sensitive(case_sensitive);
+        question.setIs_item_score(is_item_score);
+        question.setAnswer_duration(answer_duration);
         questionService.create_or_update(question);
 
         return question;
@@ -71,6 +81,7 @@ public class QuestionController {
         courseId = 1080176;
         Map<String, Object> result = new HashMap<>();
         List<Question> questions = questionService.getQues(courseId);
+        //todo course_info
         Map<String, Object> course_info = new HashMap<>();
         course_info.put("course_id", "1080176");
         course_info.put("name", "233");
@@ -94,6 +105,24 @@ public class QuestionController {
     @RequestMapping(value = "question_edit", method = RequestMethod.POST)
     public Map<String, Object> question_edit(Integer course_id, Integer question_id) {
         return questionService.selectById(course_id, question_id);
-//        return "{\"question_id\":\"4944168\",\"answer\":[\"12\",\"122\",\"222\",\"3333\",\"333344\",\"123\"],\"content\":\"\\u003Cp\\u003Easdf\\u003C\\/p\\u003E\\u003Chr\\u003E\\u003Cp\\u003E____ ____ ____ ____ ____ ____&nbsp;\\u003C\\/p\\u003E\",\"answer_content\":\"{}\",\"pic_content\":\"{}\",\"type\":\"2\",\"difficulty\":\"1\",\"chapter_id\":\"0\",\"library_id\":\"103428\",\"answer_duration\":\"5\",\"is_item_score\":1,\"case_sensitive\":0,\"strict\":0,\"answered\":\"1\",\"course_info\":{\"course_id\":\"1092146\",\"name\":\"233\",\"library_id\":\"103428\"},\"chapter_info\":[]}";
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public Map<String, Object> delete_question(Integer question_id, Integer course_id, Integer release) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("data", new ArrayList<>());
+        result.put("msg", "del success");
+        questionService.delete(question_id, course_id, release);
+        return result;
+    }
+
+    @RequestMapping(value = "open_question", method = RequestMethod.POST)
+    public String open_question(Integer question_id, Integer course_id, Integer question_open) {
+        return "{\"data\":{\"leave_time\":300,\"close_time\":\"16:31\",\"is_duration\":\"1\",\"tpl\":\"<div class=\\\"error-student-list hidden\\\">\\n    <h3 class=\\\"right-list-title\\\">\\n                                    \\u672a\\u7b54\\u9898\\u4eba\\u5458\\u540d\\u5355(1)\\n                <span class=\\\"color-black\\\"><i class=\\\"icon-black\\\"><\\/i>\\u672a\\u7b54<\\/span>\\n                <span class=\\\"color-orange\\\"><i class=\\\"icon-orange\\\"><\\/i>\\u7b54\\u9519<\\/span>\\n                <span class=\\\"color-green\\\"><i class=\\\"icon-green\\\"><\\/i>\\u7b54\\u5bf9<\\/span>\\n                        <\\/h3>\\n    <div class=\\\"green-line\\\"><\\/div>\\n    <ul>\\n                    <li title=\\\"\\u7eaa\\u6587\\u5e7f\\\" class=\\\"error-student-item color-black\\\" data-state=\\\"2\\\" data-sid=\\\"2192660\\\">\\n                <span>\\u7eaa\\u6587\\u5e7f<\\/span>\\n                <button class=\\\"state-btn\\\">\\u4fee\\u6539<\\/button>\\n            <\\/li>\\n            <\\/ul>\\n<\\/div>\\n\\n<button class=\\\"btn error-student-show btn-disabled\\\" disabled=\\\"true\\\">\\n                        \\u67e5\\u770b\\u672a\\u7b54\\u9898\\u4eba\\u5458\\u540d\\u5355\\n            <\\/button>\",\"answers_tpl\":\"<div class=\\\"error-list hidden\\\">\\n    <h3 class=\\\"right-list-title\\\">\\n        \\u5b66\\u751f\\u7b54\\u6848        <div class=\\\"student-name-btn\\\">\\n            <input type=\\\"checkbox\\\" class=\\\"filled-in\\\" id=\\\"student-name\\\" \\/>\\n            <label for=\\\"student-name\\\">\\u663e\\u793a\\u5b66\\u751f\\u540d\\u5b57<\\/label>\\n        <\\/div>\\n    <\\/h3>\\n    <div class=\\\"green-line\\\"><\\/div>\\n    <ul class=\\\"students-answer-list\\\">\\n        <div class=\\\"font-size-turner\\\" ctrl=\\\"students-answer-list\\\">\\n            <button class=\\\"normal\\\">A<\\/button>\\n            <button class=\\\"larger\\\">A<\\/button>\\n        <\\/div>\\n            <\\/ul>\\n<\\/div>\\n<button class=\\\"btn error-btn-show\\\">\\u67e5\\u770b\\u5b66\\u751f\\u7b54\\u6848<\\/button>\\n\",\"answerInfo\":{\"answer_count\":0,\"answer_ratio\":0,\"count_ratio\":0,\"is_answered\":0,\"question_id\":\"5047186\",\"paper_id\":\"5047186\"}},\"msg\":\"question open success\"}";
+    }
+
+    @RequestMapping(value = "true_list")
+    public String get_true_list(Integer question_id, Integer course_id){
+        return "{\"answerDistribution\":{\"0\":{\"stateCount\":[0,0,1],\"name\":\"\\u672a\\u5206\\u7ec4\"}},\"all_count\":1,\"false_list\":[],\"answer_count\":0,\"answer_ratio\":[{\"choice\":\"A\",\"count\":0,\"ratio\":0},{\"choice\":\"B\",\"count\":0,\"ratio\":0},{\"choice\":\"C\",\"count\":0,\"ratio\":0},{\"choice\":\"D\",\"count\":0,\"ratio\":0}],\"right_list\":[],\"right_rank\":[],\"right_count\":0,\"ratio\":\"0.0\"}";
     }
 }
