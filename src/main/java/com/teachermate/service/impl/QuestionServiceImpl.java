@@ -35,10 +35,10 @@ public class QuestionServiceImpl implements QuestionService {
         for (Question question : questions) {
             Map<String, Object> map = new HashMap<>();
             map.put("question_id", question.getId());
-            map.put("content",question.getContent());
+            map.put("content", question.getContent());
             map.put("type", question.getType().toString());
-            map.put("difficult_level",question.getDifficult_level());
-            map.put("serial_number",question.getSerial_number());
+            map.put("difficult_level", question.getDifficult_level());
+            map.put("serial_number", question.getSerial_number());
             map.put("answer_count", question.getAnswer_count());
             map.put("count_ratio", question.getCount_ratio());
         }
@@ -50,13 +50,21 @@ public class QuestionServiceImpl implements QuestionService {
         Map<String, Object> result = new HashMap<>();
         Course course = courseDao.select_one(course_id);
         Question question = questionDao.selectById(question_id);
-
-        if (false && question == null || question.getCourse_id().equals(course_id)) {
+        if (question == null || question.getCourse_id().equals(course_id)) {
             return null;
         }
+        //如果是填空题或者填空题
+        if (question.getType() == 2 || question.getType() == 11) {
+            result.put("answer", question.getAnswers());
+            result.put("answer_content", JsonUtil.getObject(question.getAnswer_content(),HashMap.class));
+            result.put("pic_content", JsonUtil.getObject(question.getPic_content(),HashMap.class));
+        } else {
+            result.put("answer", question.getAnswers()[0]);
+            result.put("answer_content", JsonUtil.toArray(question.getAnswer_content()));
+            result.put("pic_content", JsonUtil.toArray(question.getPic_content()));
+        }
 
-        result.put("answer", question.getAnswers());
-        result.put("answer_content", JsonUtil.getObject(question.getAnswer_content(), HashMap.class));
+
         result.put("answer_duration", question.getAnswer_duration());
         result.put("answered", question.getIs_answered());
         result.put("case_sensitive", question.getCase_sensitive());
@@ -65,13 +73,27 @@ public class QuestionServiceImpl implements QuestionService {
         result.put("difficulty", question.getDifficult_level());
         result.put("is_item_score", question.getIs_item_score());
         result.put("library_id", question.getLibrary_id());
-        result.put("pic_content", JsonUtil.getObject(question.getPic_content(), HashMap.class));
         result.put("question_id", question.getId());
         result.put("strict", question.getStrict());
         result.put("type", question.getType() + "");
 
-        result.put("course_info", course);
+        Map<String, Object> course_info = new HashMap<>();
+        course_info.put("course_id", course.getId());
+        course_info.put("name", course.getName());
+        course_info.put("library_id", course.getLibraryId());
+
+        result.put("course_info", course_info);
         result.put("chapter_info", new ArrayList<>());
         return result;
+    }
+
+    @Override
+    public void create_or_update(Question question) {
+        if (question.getId() == null){
+            questionDao.create(question);
+        }else{
+            questionDao.update(question);
+        }
+
     }
 }

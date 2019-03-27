@@ -22,14 +22,15 @@
                 "paper_info": questions.paper_info,
                 "courseware": questions.courseware || []
             };
+            var n = window.location.href;
+            if (n.match("question_id=")){
+                // todo 彻底修改url
+                // n = n.replace(/\/\?question_id=\d*/, "");
+                // window.location.href = n;
+                $('#main-content').load('question_detail');
+            }
         });
-        var n = window.location.href;
-        if (n.match("question_id=")){
-            // todo 彻底修改url
-            // n = n.replace(/\/\?question_id=\d*/, "");
-            // window.location.href = n;
-            $('#main-content').load('question_detail');
-        }
+
     });
 </script>
 <body class="layui-layout-body">

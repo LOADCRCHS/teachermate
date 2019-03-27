@@ -11,4 +11,6 @@ public interface QuestionService {
     List<Question> getQues(Integer courseId);
 
     Map<String, Object> selectById(Integer course_id, Integer question_id);
+
+    void create_or_update(Question question);
 }

@@ -10,4 +10,6 @@ public interface QuestionDao {
     List<Question> selectByCourseId(Integer courseId);
 
     Question selectById(Integer question_id);
+
+    void update(Question question);
 }

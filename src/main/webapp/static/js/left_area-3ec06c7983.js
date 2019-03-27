@@ -110,11 +110,9 @@
 
     function q(e, t, i, o) {
         var r = window.location.href.match("get_answer_detail") || window.location.href.match("get_courseware_detail");
-        if (r || true) {
-            var a = new QuestionData(e, t, i, o, (!0)), o = window.location.href;
-            return o.match("question_id=") ? o = o.replace(/question_id=[A-z|0-9]*/, "question_id=" + t) : o += "?question_id=" + t, window.history && history.pushState && window.history.replaceState({}, 0, o), a.getTpl()
-        }
-        n("question/get_answer_detail/" + e + "?question_id=" + t)
+        var a = new QuestionData(e, t, i, o, (!0)), o = window.location.href;
+        return o.match("question_id=") ? o = o.replace(/question_id=[A-z|0-9]*/, "question_id=" + t) : o += "?question_id=" + t, window.history && history.pushState && window.history.replaceState({}, 0, o), a.getTpl()
+        // n("question/get_answer_detail/" + e + "?question_id=" + t)
     }
 
     var _ = e("#objective"), y = e("#course-id").val(), b = e("#subjective"),

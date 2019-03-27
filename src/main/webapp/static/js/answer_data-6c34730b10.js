@@ -263,7 +263,7 @@ $(function () {
         }), M.on("click", ".btn-edit-question", function () {
             var t = $("#course-id").val(), i = $("#question-id").val();
             $.post("question/question_edit", {question_id: i, course_id: t}).done(function (t) {
-                var i = JSON.parse(t);
+                var i = t;
                 "1" == i.answered && alert("本题已有答题记录, 修改题型或答案将重算学生得分。"), EditQuestion.mount(document.getElementById("edit-area"), i, ee, ie, te, ne, "/api/v1/upload/direct", e)
             })
         }), M.on("click", ".btn-copy-question", function () {
