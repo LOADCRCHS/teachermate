@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>座位设置</title>
+</head>
+<style type="text/css">
+    .seat_arr {
+
+    }
+
+    .seat_img {
+        height: 40px;
+        width: 40px;
+        margin: 4px;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var $seats = $(".seats").first();
+        var html = "";
+        var seat_row = 10, seat_col = 10;
+        for (var i = 1; i < seat_col + 1; i++) {
+            for (var j = 1; j < seat_row + 1; j++) {
+                html += ("<img id=seat_" + i + "_" + j + " onclick='selectSeat(this)' class='seat_img' src=\"../../static/images/seat1.png\">");
+                seat_list.add("seat_" + i + "_" + j);
+            }
+            html += ("<br>")
+        }
+        ues_list = seat_list;
+        $seats.html(html);
+    });
+    var seat_list = [];
+    var ues_list = [];
+    var no_use_list = [];
+    function selectSeat(obj) {
+        var path = "../../static/images/seat1.png"; //可选
+        if (obj.src.indexOf("seat1.png") > 0) {
+            path = obj.src.replace(/seat1.png/, "seat.png");
+            no_use_list.add(obj.id);
+            ues_list.remove(obj.id);
+        } else {
+            path = obj.src.replace(/seat.png/, "seat1.png");
+            no_use_list.remove(obj.id);
+            ues_list.add(obj.id);
+        }
+        var $obj = $("#" + obj.id);
+        $obj.attr("src", path);
+
+    }
+</script>
+<body>
+<div class="top_area">
+    <div class="class_name"></div>
+    <div class="class_time"></div>
+</div>
+<div class="seat_area">
+    <div class="head_seat">
+        <img class='seat_img' src="../../static/images/seat1.png"> 可选
+        <img class='seat_img' src="../../static/images/seat.png"> 不可选
+    </div>
+    <hr>
+    <div class="seat_arr">
+        <div class="seat_title">讲台</div>
+        <div class="seats"></div>
+    </div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript" src="../../static/js/jquery-1.12.1.min.js"></script>

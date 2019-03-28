@@ -24,4 +24,9 @@ public class RouteController {
     public String sign() {
         return "sign";
     }
+
+    @RequestMapping("seat")
+    public String seat(){
+        return "seat";
+    }
 }
