@@ -51,17 +51,6 @@
             <li class="layui-nav-item">
                 <a href="javascript:;" onclick="$('#main-content').load('sign')">签到</a>
             </li>
-            <!--<script type="text/javascript">-->
-                <!--$(document).ready(function () {-->
-                    <!--var n = window.location.href;-->
-                    <!--if (n.match("question_id=")){-->
-                        <!--// todo 彻底修改url-->
-                        <!--// n = n.replace(/\/\?question_id=\d*/, "");-->
-                        <!--// window.location.href = n;-->
-                        <!--$('#main-content').load('question_detail');-->
-                    <!--}-->
-                <!--})-->
-            <!--</script>-->
             <li class="layui-nav-item">
                 <a href="javascript:;" onclick="$('#main-content').load('question_detail')">答题</a>
             </li>
@@ -72,7 +61,12 @@
                 <a href="javascript:;">预警系统</a>
             </li>
             <li class="layui-nav-item">
-                <a href="javascript:;" onclick="$('#main-content').load('seat')">教室规格设置</a>
+                <a href="javascript:;">座位管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;" onclick="$('#main-content').load('current_seat')">查看当前座位</a></dd>
+                    <dd><a href="javascript:;" onclick="$('#main-content').load('seat_add')">新增座位</a></dd>
+                    <dd><a href="javascript:;" onclick="$('#main-content').load('seat_update')">编辑座位</a></dd>
+                </dl>
             </li>
         </ul>
         <ul class="layui-nav layui-layout-right">
