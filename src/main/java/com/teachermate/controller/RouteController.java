@@ -29,4 +29,19 @@ public class RouteController {
     public String seat(){
         return "seat";
     }
+
+    @RequestMapping("current_seat")
+    public String current_seat(){
+        return "current_seat";
+    }
+
+    @RequestMapping("seat_add")
+    public String seat_add(){
+        return "seat_add";
+    }
+
+    @RequestMapping("seat_update")
+    public String seat_update(){
+        return "seat_update";
+    }
 }

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>座位设置</title>
+</head>
+<link rel="stylesheet" href="../../static/css/seat_common.css"/>
+<style type="text/css">
+    .seats {
+        margin-left: auto;
+        margin-right: auto;
+        width: 500px;
+    }
+
+    .input_form{
+        margin-left: auto;
+        margin-right: auto;
+        width: 600px;
+    }
+</style>
+<script type="text/javascript">
+    var seatArr = [];
+    $(document).ready(function () {
+
+        var $seats = $(".seats").first();
+        var html = "";
+        var seat_row = 10, seat_col = 10;
+        for (var row = 1; row < seat_row + 1; row++) {
+            for (var col = 1; col < seat_col + 1; col++) {
+                var seat_id = "seat_" + row + "_" + col;
+                html += ("<img id=" + seat_id + " onclick='selectSeat(this)' class='seat_img' src=\"../../static/images/seat1.png\">");
+                var seat_json = {
+                    id: seat_id,
+                    row: row,
+                    col: col,
+                    type: TYPE_ENUM.USE
+                };
+                seatArr.push(seat_json);
+            }
+            html += ("<br>")
+        }
+        $seats.html(html);
+    });
+
+    var TYPE_ENUM = {USE: 1, NO_USE: 0, SELECTED: 2};
+
+    function selectSeat(obj) {
+        var path = "../../static/images/seat1.png";
+        var type = TYPE_ENUM.USE;
+        if (obj.src.indexOf("seat1.png") > 0) {
+            path = obj.src.replace(/seat1.png/, "seat.png");
+            type = TYPE_ENUM.NO_USE;
+        } else {
+            path = obj.src.replace(/seat.png/, "seat1.png");
+        }
+        var $obj = $("#" + obj.id);
+        $obj.attr("src", path);
+        changeType(obj.id, type);
+    }
+
+    function changeType(id, type) {
+        seatArr.forEach(function (e) {
+            if (e.id === id) {
+                e.type = type;
+            }
+        });
+    }
+</script>
+<body>
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-md10">
+            <div class="input_form">
+                <form class="layui-form" action="">
+                    <input type="hidden" name="courseId" value="1"/>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">课程名称</label>
+                        <div class="layui-input-block">
+                            <input value="大也课堂" type="text" name="courseName" required lay-verify="required"
+                                   placeholder="请输入名称" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label">上课地点</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="courseAddress" required lay-verify="required" placeholder="请输入地点"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="seat_area">
+                        <div class="dais">讲台</div>
+                        <div class="seats"></div>
+                    </div>
+                    <hr>
+                    <div class="seat_info_view">
+                        <img class='seat_img_view' src="../../static/images/seat1.png"> 可选
+                        <img class='seat_img_view' src="../../static/images/seat.png"> 不可选
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!--<div class="layui-col-md4">
+            <form class="layui-form" action="">
+                <input type="hidden" name="courseId" value="1"/>
+                <div class="layui-inline">
+                    <label class="layui-form-label">选择行数</label>
+                    <div class="layui-input-block">
+                        <input type="number" name="row" required lay-verify="required"
+                               placeholder="请输入高度" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">选择列数</label>
+                    <div class="layui-input-block">
+                        <input type="number" name="col" required lay-verify="required" placeholder="请输入列数"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </form>
+        </div>-->
+    </div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript" src="../../static/js/jquery-1.12.1.min.js"></script>

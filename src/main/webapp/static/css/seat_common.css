@@ -1,0 +1,29 @@
+.seats{
+    margin-left: 40px;
+}
+
+.dais {
+    margin-top: 5px;
+    text-align: center;
+    font-size: medium;
+    margin-left: auto;
+    margin-right: auto;
+    width: 180px;
+    height: 40px;
+    background-color: #e7e7e7;
+}
+
+.seat_img {
+    height: 40px;
+    width: 40px;
+    margin: 4px;
+}
+
+.seat_info_view{
+    margin-top: 10px;
+    margin-left: 380px;
+}
+.seat_img_view{
+    height: 30px;
+    width: 30px;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>座位设置</title>
+</head>
+<style type="text/css">
+
+    .seats{
+        margin-left: 40px;
+    }
+
+    .dais {
+        text-align: center;
+        font-size: medium;
+        margin-left: auto;
+        margin-right: auto;
+        width: 180px;
+        height: 40px;
+        background-color: #e7e7e7;
+    }
+
+    .seat_img {
+        height: 40px;
+        width: 40px;
+        margin: 4px;
+    }
+
+    .seat_info_view{
+        margin-top: 10px;
+        margin-left: 380px;
+    }
+    .seat_img_view{
+        height: 30px;
+        width: 30px;
+    }
+
+</style>
+<script type="text/javascript">
+    var seatArr = [];
+    $(document).ready(function () {
+
+        var $seats = $(".seats").first();
+        var html = "";
+        var seat_row = 10, seat_col = 10;
+        for (var row = 1; row < seat_row + 1; row++) {
+            for (var col = 1; col < seat_col + 1; col++) {
+                var seat_id = "seat_" + row + "_" + col;
+                html += ("<img id=" + seat_id + " onclick='selectSeat(this)' class='seat_img' src=\"../../static/images/seat1.png\">");
+                var seat_json = {
+                    id: seat_id,
+                    row: row,
+                    col: col,
+                    type: TYPE_ENUM.USE
+                };
+                seatArr.push(seat_json);
+            }
+            html += ("<br>")
+        }
+        $seats.html(html);
+    });
+
+    var TYPE_ENUM = {USE: 1, NO_USE: 0, SELECTED: 2};
+
+    function selectSeat(obj) {
+        var path = "../../static/images/seat1.png";
+        var type = TYPE_ENUM.USE;
+        if (obj.src.indexOf("seat1.png") > 0) {
+            path = obj.src.replace(/seat1.png/, "seat.png");
+            type = TYPE_ENUM.NO_USE;
+        } else {
+            path = obj.src.replace(/seat.png/, "seat1.png");
+        }
+        var $obj = $("#" + obj.id);
+        $obj.attr("src", path);
+        changeType(obj.id, type);
+    }
+
+    function changeType(id, type) {
+        seatArr.forEach(function (e) {
+            if (e.id === id) {
+                e.type = type;
+            }
+        });
+    }
+</script>
+<body>
+<div class="layui-container">
+    <div class="layui-row">
+
+        <div class="layui-col-md6">
+            <div class="seat_area">
+                <div class="dais">讲台</div>
+                <div class="seats"></div>
+            </div>
+            <hr>
+            <div class="seat_info_view">
+                <img class='seat_img_view' src="../../static/images/seat1.png"> 可选
+                <img class='seat_img_view' src="../../static/images/seat.png"> 不可选
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript" src="../../static/js/jquery-1.12.1.min.js"></script>
