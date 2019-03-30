@@ -14,7 +14,7 @@ public interface SeatDao {
 
     Seat selectById(Integer seat_id);
 
-    List<Seat> selectByCourseId(Integer seat_id);
+    List<Seat> selectByCourseId(Integer courseId);
 
     List<Seat> select(Seat seat);
 }
