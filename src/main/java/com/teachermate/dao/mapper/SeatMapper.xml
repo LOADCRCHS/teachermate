@@ -17,5 +17,25 @@
         where id = #{id}
     </update>
 
+    <sql id="selectSql">
+        select *
+        from seat;
+    </sql>
 
+    <select id="selectById" resultType="Seat">
+        <include refid="selectSql"/>
+        where id= #{id}
+    </select>
+
+    <select id="selectByCourseId" resultType="Seat">
+        <include refid="selectSql"/>
+        where courseId= #{courseId}
+    </select>
+
+    <select id="select" resultType="Seat">
+        <include refid="selectSql"/>
+        <where>
+            <if test="#{courseId}!=null">courseId=#{courseId}</if>
+        </where>
+    </select>
 </mapper>
