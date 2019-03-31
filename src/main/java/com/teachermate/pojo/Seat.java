@@ -7,5 +7,5 @@ public class Seat {
     private Integer id;
     private Integer courseId;
     private String seatArray;
-    private String courseAdd;
+    private String courseAddress;
 }
