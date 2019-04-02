@@ -12,7 +12,6 @@ File Encoding         : 65001
 
 Date: 2019-04-01 22:05:39
 
-todo table seat create
 */
 
 SET FOREIGN_KEY_CHECKS=0;
