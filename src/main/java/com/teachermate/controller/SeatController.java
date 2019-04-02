@@ -21,7 +21,8 @@ public class SeatController {
     }
 
     @RequestMapping("save_seat")
-    public Map save_seat(){
+    public Map save_seat(Seat seat){
+        seatService.create(seat);
         return null;
     }
 
