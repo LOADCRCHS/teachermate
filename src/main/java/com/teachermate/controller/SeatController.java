@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,8 +23,10 @@ public class SeatController {
 
     @RequestMapping("save_seat")
     public Map save_seat(Seat seat){
+        Map<String,Object> result = new HashMap<>();
         seatService.create(seat);
-        return null;
+        result.put("code","1000");
+        return result;
     }
 
 }
